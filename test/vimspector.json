@@ -1,0 +1,31 @@
+{
+	"configurations": {
+		"CodeLLDB": {
+    	"adapter": "CodeLLDB",
+			"configuration": {
+      "request": "launch",
+      "program": "${workspaceRoot}/main",
+      "stopAtEntry": true
+			}
+		},
+
+		"lldb-vscode": {
+	    "adapter": "lldb-vscode",
+			"configuration": {
+	      "request": "launch",
+        "program": "${workspaceRoot}/main",
+        "stopAtEntry": true
+			}
+		},
+
+		"cpptools": {
+		  "adapter": "vscode-cpptools",
+			"configuration": {
+				"request": "launch",
+			  "program": "${workspaceRoot}/main",
+		    "stopOnEntry": true,
+		    "MIMode": "lldb"
+			}
+		}
+	}
+}

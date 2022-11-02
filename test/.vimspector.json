@@ -1,0 +1,13 @@
+{
+	"configurations":{
+		"CodeLLDB":{
+			"adapter": "CodeLLDB",
+			"configuration":{
+			"name": "launch",
+			"type": "lldb",
+			"request": "launch",
+			"program": "${workspaceFolder}/debugtest"
+			} 
+		} 
+	}
+}
