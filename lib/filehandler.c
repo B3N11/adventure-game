@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "debugmalloc.h"
 #include <string.h>
+#include "debugmalloc.h"
 
 int CountChar(const char *text, char find){
 
@@ -23,20 +23,21 @@ char **Split(const char *text, char splitChar, int *arrayLength){
     return NULL;
 
   //Check how many elements the array will have and allocate for that size
-  int length = CountChar(text, splitChar);
+  int length = CountChar(text, splitChar) + 1;
   char **result = malloc(sizeof(char*) * length);
 
   int offset = 0;
   for(int i = 0; i < length; i++){
 
     int lineLength = 0;
-    for(int j = offset; text[j] != splitChar && text[j] != '\0'; j++)
+    while(text[lineLength + offset] != splitChar && text[lineLength + offset] != '\0')
       lineLength++;
 
-    char *buffer = (char*) malloc(sizeof(char) * lineLength + 1);
+    char *buffer = (char*) malloc(lineLength + 1);
 
     memcpy(buffer, text + offset, lineLength);
-    strcat(buffer, "\0");
+    *(buffer + lineLength) = '\0';
+    //strncat(buffer, "\0", 1);
 
     result[i] = buffer; 
     offset += lineLength + 1;
@@ -90,8 +91,9 @@ int main(void){
   int length;
   char **array= Split(result, '\n', &length);
 
+  printf("Array length: %d\n", length);
   for(int i = 0; i < length; i++){
-    /*puts(array[i]);*/
+    puts(array[i]);
     free(array[i]);
   }
 
