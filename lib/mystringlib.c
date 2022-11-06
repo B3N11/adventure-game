@@ -1,21 +1,17 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include "mystringlib.h"
 
-//Typedef
-typedef struct String{
-	char *data;
-	int length;
-}String;
+bool AppendStr(String *dst, const char *text, int n){
 
-//Function declaration
-String* CreateString(const char *text);
-bool TrimStr(String *mystring, const char trim);
-bool SetTextStr(String *mystring, const char *text);
-bool ReadConsoleInput(String *myString, int maxLength, const char readUntil, const char replaceWith);
-bool AddTextStr(String *mystring, const char *text);
-bool ClearStr(String *mystring);
+	if(dst == NULL || text == NULL)
+		return false;
+
+	int newLength = dst->length + strlen(text);
+	dst->data = (char*) realloc(dst->data, newLength);
+	memcpy(dst->data + dst->length, text, n);
+	dst->length = newLength;
+
+	return true;
+}
 
 //Creates a new string instance
 String* CreateString(const char *text){

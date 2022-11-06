@@ -10,8 +10,10 @@ typedef struct String{
 }String;
 
 //Function declaration
-String* CreateString();
+String* CreateString(const char *text);
 bool TrimStr(String *mystring, const char trim);
 bool SetTextStr(String *mystring, const char *text);
 bool ReadConsoleInput(String *myString, int maxLength, const char readUntil, const char replaceWith);
-void Log();
+bool AddTextStr(String *mystring, const char *text);
+bool ClearStr(String *mystring);
+bool AppendStr(String *dst, const char *text, int n);
