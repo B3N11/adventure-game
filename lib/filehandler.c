@@ -3,6 +3,45 @@
 #include "debugmalloc.h"
 #include <string.h>
 
+int CountCh(const char *text, char find){
+
+  int result = 0;
+
+  for(int i = 0; text[i] != '\0'; i++)
+    if(text[i] == find)
+      result++;
+
+  return result;
+}
+
+char **Split(const char *text, char splitChar, int *arrayLength){
+
+  if(text == NULL || arrayLength == NULL)
+    return NULL;
+
+  int length = CountCh(text, splitChar);
+  char **result = malloc(sizeof(char*) * length);
+
+  int offset = 0;
+  for(int i = 0; i < length; i++){
+
+    int lineLength = 0;
+    for(int j = offset; text[j] != splitChar; j++)
+      lineLength++;
+
+    char *buffer = (char*) malloc(sizeof(char) * lineLength + 1);
+
+    memcpy(buffer, text + offset, lineLength);
+    strcat(buffer, "\0");
+
+    result[i] = buffer; 
+    offset += lineLength + 1;
+  }
+
+  *arrayLength = length;
+  return result;
+}
+
 char* Append(char *dst, const char *text){
 
   if(dst == NULL || text == NULL)
@@ -20,14 +59,14 @@ char* Append(char *dst, const char *text){
   return tmp;
 }
 
-String **ReadAllLines(const char *path){
+char *ReadAllLines(const char *path){
 
   FILE *fp = fopen(path, "r");
 
   if(fp == NULL)
     return NULL;
 
-  int length = 0;
+  int index = 0;
   char buffer[1024];
   char *current = (char*) malloc(sizeof(char) * 1);
   strcpy(current, "\0");
@@ -36,17 +75,24 @@ String **ReadAllLines(const char *path){
   while(fgets(buffer, sizeof(buffer), fp) != NULL)
     current = Append(current, buffer);
 
-  puts(current);
   fclose(fp);
-  free(current);
-  return NULL;
+  return current;
 }
 
 int main(void){
 
-  String **array = ReadAllLines("test.txt");
-  if(array == NULL)
-    printf("Error!");
+  char *result = ReadAllLines("test.txt");
+
+  int length;
+  char **array= Split(result, '\n', &length);
+
+  for(int i = 0; i < length; i++){
+    puts(array[i]);
+    free(array[i]);
+  }
+
+  free(array);
+  free(result);
   /*String **hey = malloc(10 * sizeof(String *));*/
 
   /*for(int i = 0; i < 10; i++){*/
