@@ -1,9 +1,8 @@
 #include <stdio.h>
-#include "mystringlib.h"
 #include "debugmalloc.h"
 #include <string.h>
 
-int CountCh(const char *text, char find){
+int CountChar(const char *text, char find){
 
   int result = 0;
 
@@ -14,19 +13,24 @@ int CountCh(const char *text, char find){
   return result;
 }
 
+//Splits the given string into substrings separated by the given character
+//Returns: a string array (char**) where each element is a substring separated by the given character
+//         needs the address of an integer to store the length of the array
 char **Split(const char *text, char splitChar, int *arrayLength){
 
+  //Check for parameter validity
   if(text == NULL || arrayLength == NULL)
     return NULL;
 
-  int length = CountCh(text, splitChar);
+  //Check how many elements the array will have and allocate for that size
+  int length = CountChar(text, splitChar);
   char **result = malloc(sizeof(char*) * length);
 
   int offset = 0;
   for(int i = 0; i < length; i++){
 
     int lineLength = 0;
-    for(int j = offset; text[j] != splitChar; j++)
+    for(int j = offset; text[j] != splitChar && text[j] != '\0'; j++)
       lineLength++;
 
     char *buffer = (char*) malloc(sizeof(char) * lineLength + 1);
@@ -87,7 +91,7 @@ int main(void){
   char **array= Split(result, '\n', &length);
 
   for(int i = 0; i < length; i++){
-    puts(array[i]);
+    /*puts(array[i]);*/
     free(array[i]);
   }
 
