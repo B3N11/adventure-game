@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <string.h>
-#include "debugmalloc.h"
+#include "filehandler.h"
 
+//Counts the occurences of a character in a string
+//Returns: an integer containing the result of the operation (number of occurences)
 int CountChar(const char *text, char find){
 
   int result = 0;
@@ -16,6 +16,7 @@ int CountChar(const char *text, char find){
 //Splits the given string into substrings separated by the given character
 //Returns: a string array (char**) where each element is a substring separated by the given character
 //         needs the address of an integer to store the length of the array
+//         returns NULL if the parameters were invalid
 char **Split(const char *text, char splitChar, int *arrayLength){
 
   //Check for parameter validity
@@ -29,33 +30,45 @@ char **Split(const char *text, char splitChar, int *arrayLength){
   int offset = 0;
   for(int i = 0; i < length; i++){
 
-    int lineLength = 0;
-    while(text[lineLength + offset] != splitChar && text[lineLength + offset] != '\0')
-      lineLength++;
+    //Get the length of the substring without the splitChar
+    int subLength = 0;
+    while(text[subLength + offset] != splitChar && text[subLength + offset] != '\0')
+      subLength++;
 
-    char *buffer = (char*) malloc(lineLength + 1);
+    //Create a tmp buffer for the substring
+    char *buffer = (char*) malloc(subLength + 1);
 
-    memcpy(buffer, text + offset, lineLength);
-    *(buffer + lineLength) = '\0';
+    //Copy the substring and add a null terminator
+    memcpy(buffer, text + offset, subLength);
+    *(buffer + subLength) = '\0';
     //strncat(buffer, "\0", 1);
 
+    //Add the substring to the array and set offset
     result[i] = buffer; 
-    offset += lineLength + 1;
+    offset += subLength + 1;
   }
 
+  //Give back the length of the array
   *arrayLength = length;
   return result;
 }
 
+//Adds the given text to the given destination string
+//Returns: a pointer to the new string (given string is freed)
+//         returns NULL when either parameter is NULL
+//         the returned string will only be null-terminated if the given text is null terminated
 char* Append(char *dst, const char *text){
 
+  //Check for parameter validity
   if(dst == NULL || text == NULL)
     return NULL;
 
+  //Get length of the parameters and create a total length (+1 byte for the \0)
   int dstLength = strlen(dst);
   int textLength = strlen(text);
   int length = dstLength + textLength + 1;
 
+  //Allocate memory and copy both strings, then free destination
   char *tmp = (char*) malloc(sizeof(char) * length);
   memcpy(tmp, dst, dstLength);
   memcpy(tmp + dstLength, text, textLength + 1);
@@ -64,48 +77,31 @@ char* Append(char *dst, const char *text){
   return tmp;
 }
 
+//Reads all lines of a file and stores them in a string
+//Returns: a string with the content of a file
+//         returns NULL if the file can't be opened
 char *ReadAllLines(const char *path){
 
+  //Open file in read mode
   FILE *fp = fopen(path, "r");
 
+  //Check for file validity
   if(fp == NULL)
     return NULL;
 
-  int index = 0;
+  //Create tmp buffer to read the file content into
   char buffer[1024];
-  char *current = (char*) malloc(sizeof(char) * 1);
-  strcpy(current, "\0");
 
-  //Read into buffer
+  //Allocate memory for storing string
+  char *result = (char*) malloc(sizeof(char) * 1);
+  *result = '\0';
+  //strcpy(result, "\0");
+
+  //Read into buffer, copy that into result until EOF is reached
   while(fgets(buffer, sizeof(buffer), fp) != NULL)
-    current = Append(current, buffer);
+    result = Append(result, buffer);
 
+  //Close file
   fclose(fp);
-  return current;
-}
-
-int main(void){
-
-  char *result = ReadAllLines("test.txt");
-
-  int length;
-  char **array= Split(result, '\n', &length);
-
-  printf("Array length: %d\n", length);
-  for(int i = 0; i < length; i++){
-    puts(array[i]);
-    free(array[i]);
-  }
-
-  free(array);
-  free(result);
-  /*String **hey = malloc(10 * sizeof(String *));*/
-
-  /*for(int i = 0; i < 10; i++){*/
-    /*hey[i] = CreateString("Anyád");*/
-    /*puts(hey[i]->data);*/
-    /*//free(hey[i]);*/
-  /*}*/
-  /*free(hey);*/
-  return 0;
+  return result;
 }
