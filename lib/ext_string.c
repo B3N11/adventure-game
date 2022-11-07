@@ -17,7 +17,7 @@ int CountChar(const char *text, char find){
 //Returns: a string array (char**) where each element is a substring separated by the given character
 //         needs the address of an integer to store the length of the array
 //         returns NULL if the parameters were invalid
-char **Split(const char *text, char splitChar, int *arrayLength){
+char **Split(char *text, char splitChar, int *arrayLength){
 
   //Check for parameter validity
   if(text == NULL || arrayLength == NULL)
@@ -47,6 +47,8 @@ char **Split(const char *text, char splitChar, int *arrayLength){
     result[i] = buffer; 
     offset += subLength + 1;
   }
+
+  free(text);
 
   //Give back the length of the array
   *arrayLength = length;

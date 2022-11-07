@@ -21,8 +21,6 @@ GameData *HandleRootfile(char *file){
 
   int length;
   char **lines = ReadAllLines(file, &length); 
-  int asd = strlen(lines[0]) + strlen(lines[1]);
-  printf("%d\n", asd);
 
   GameData *result = malloc(sizeof(GameData));
   result->title = lines[0];
