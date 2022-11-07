@@ -19,6 +19,7 @@ GameData *CreateGameData(char *title, char *creator){
 
 GameData *HandleRootfile(char *file){
 
+
   int length;
   char **lines = ReadAllLines(file, &length); 
 
@@ -44,8 +45,14 @@ int main(int argc, char **args){
   puts(result->title);
   puts(result->creator);
 
-  free(result->title);
-  free(result->creator);
-  free(result);
+  void **ptrs = malloc (sizeof(void*)*3);
+  ptrs[0] = result->title;
+  ptrs[1] = result->creator;
+  ptrs[2] = result;
+
+  for(int i = 0; i < 3; i++)
+    free(ptrs[i]);
+
+  free(ptrs);
   return 0;
 }

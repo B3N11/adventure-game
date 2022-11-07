@@ -1,5 +1,4 @@
 #include "filehandler.h"
-#include "ext_string.h"
 
 //Reads all lines of a file and stores them in a string array
 //Returns: a string array (char **) with each element containing a line of the file
