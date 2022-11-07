@@ -1,86 +1,42 @@
 #include "filehandler.h"
+#include "ext_string.h"
 
-//Counts the occurences of a character in a string
-//Returns: an integer containing the result of the operation (number of occurences)
-int CountChar(const char *text, char find){
+//Reads all lines of a file and stores them in a string array
+//Returns: a string array (char **) with each element containing a line of the file
+//         returns NULL if the file can't be opened
+char **ReadAllLines(const char *path, int *length){
 
-  int result = 0;
+  //Open file in read mode
+  FILE *fp = fopen(path, "r");
 
-  for(int i = 0; text[i] != '\0'; i++)
-    if(text[i] == find)
-      result++;
-
-  return result;
-}
-
-//Splits the given string into substrings separated by the given character
-//Returns: a string array (char**) where each element is a substring separated by the given character
-//         needs the address of an integer to store the length of the array
-//         returns NULL if the parameters were invalid
-char **Split(const char *text, char splitChar, int *arrayLength){
-
-  //Check for parameter validity
-  if(text == NULL || arrayLength == NULL)
+  //Check for file validity
+  if(fp == NULL)
     return NULL;
 
-  //Check how many elements the array will have and allocate for that size
-  int length = CountChar(text, splitChar) + 1;
-  char **result = malloc(sizeof(char*) * length);
+  //Create tmp buffer to read the file content into
+  char buffer[1024];
 
-  int offset = 0;
-  for(int i = 0; i < length; i++){
+  //Allocate memory for storing string
+  char *lines = (char*) malloc(sizeof(char) * 1);
+  *lines = '\0';
+  //strcpy(result, "\0");
 
-    //Get the length of the substring without the splitChar
-    int subLength = 0;
-    while(text[subLength + offset] != splitChar && text[subLength + offset] != '\0')
-      subLength++;
+  //Read into buffer, copy that into result until EOF is reached
+  while(fgets(buffer, sizeof(buffer), fp) != NULL)
+    lines = Append(lines, buffer);
 
-    //Create a tmp buffer for the substring
-    char *buffer = (char*) malloc(subLength + 1);
+  //Split the read lines
+  char **result = Split(lines, '\n', length);
 
-    //Copy the substring and add a null terminator
-    memcpy(buffer, text + offset, subLength);
-    *(buffer + subLength) = '\0';
-    //strncat(buffer, "\0", 1);
-
-    //Add the substring to the array and set offset
-    result[i] = buffer; 
-    offset += subLength + 1;
-  }
-
-  //Give back the length of the array
-  *arrayLength = length;
+  //Close file
+  fclose(fp);
   return result;
-}
-
-//Adds the given text to the given destination string
-//Returns: a pointer to the new string (given string is freed)
-//         returns NULL when either parameter is NULL
-//         the returned string will only be null-terminated if the given text is null terminated
-char* Append(char *dst, const char *text){
-
-  //Check for parameter validity
-  if(dst == NULL || text == NULL)
-    return NULL;
-
-  //Get length of the parameters and create a total length (+1 byte for the \0)
-  int dstLength = strlen(dst);
-  int textLength = strlen(text);
-  int length = dstLength + textLength + 1;
-
-  //Allocate memory and copy both strings, then free destination
-  char *tmp = (char*) malloc(sizeof(char) * length);
-  memcpy(tmp, dst, dstLength);
-  memcpy(tmp + dstLength, text, textLength + 1);
-  free(dst);
-
-  return tmp;
 }
 
 //Reads all lines of a file and stores them in a string
 //Returns: a string with the content of a file
 //         returns NULL if the file can't be opened
-char *ReadAllLines(const char *path){
+char *ReadAllLinesStr(const char *path){
 
   //Open file in read mode
   FILE *fp = fopen(path, "r");
