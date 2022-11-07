@@ -1,6 +1,7 @@
 #include "game_setup.h"
 #include "../lib/filehandler.h"
 #include "../lib/debugmalloc.h"
+#include "../lib/logger.h"
 
 typedef struct GameData{
   char *title;
@@ -19,6 +20,8 @@ GameData *CreateGameData(char *title, char *creator){
 
 GameData *HandleRootfile(char *file){
 
+  if(file == NULL)
+    ExitError("Parameter can't have NULL value. (HandleRootfile(char *file))");
 
   int length;
   char **lines = ReadAllLines(file, &length); 
@@ -36,23 +39,8 @@ GameData *HandleRootfile(char *file){
 
 int main(int argc, char **args){
 
-  if(argc <= 1){
-    printf("Too few arguments!");
-    return -1;
-  }
+  if(argc <= 1)
+    ExitError("Invalid parameters.\n      kalandjatek [rootfile] [characterfile]");
 
-  GameData *result = HandleRootfile(args[1]);
-  puts(result->title);
-  puts(result->creator);
-
-  void **ptrs = malloc (sizeof(void*)*3);
-  ptrs[0] = result->title;
-  ptrs[1] = result->creator;
-  ptrs[2] = result;
-
-  for(int i = 0; i < 3; i++)
-    free(ptrs[i]);
-
-  free(ptrs);
-  return 0;
+   return 0;
 }

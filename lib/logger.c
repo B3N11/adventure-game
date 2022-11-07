@@ -1,6 +1,7 @@
-#include <stdio.h>
+#include "logger.h"
 
-int main(void){
+void ExitError(const char* msg){
 
-  return 0;
+  printf("%s", msg);
+  exit(1);
 }

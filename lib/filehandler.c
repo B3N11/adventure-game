@@ -24,11 +24,16 @@ char **ReadAllLines(const char *path, int *length){
   while(fgets(buffer, sizeof(buffer), fp) != NULL)
     lines = Append(lines, buffer);
 
+  //Crop down the empty line from the end of the file
+  lines = Crop(lines, 0, 1);
+
   //Split the read lines
   char **result = Split(lines, '\n', length);
 
-  //Close file
+  //Release resources
   fclose(fp);
+  free(lines);
+
   return result;
 }
 

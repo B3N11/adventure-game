@@ -1,5 +1,32 @@
 #include "ext_string.h"
 
+//Takes off the given amount of characters from the front and back of the given string
+//Returns: a new string that contains the cropped text. The original data is freed
+//         returns NULL if the given string is NULL
+//         if the sum(front, back) is larger than or equal to the lenght of the string, the original text is returned and it is not freed
+char *Crop(char *text, unsigned int front, unsigned int back){
+
+  //Check for parameter validity
+  if(text == NULL)
+    return NULL;
+
+  //Get length of the text
+  int length = strlen(text);
+
+  //Check if cropping even makes sense
+  if((front + back) >= length)
+    return text;
+
+  int totalLength = length - (front + back) + 1;
+  char *result = (char *) malloc(totalLength);
+
+  memcpy(result, text+front, (totalLength - 1));
+  *(result + totalLength - 1) = '\0';
+
+  free(text);
+  return result;
+}
+
 //Counts the occurences of a character in a string
 //Returns: an integer containing the result of the operation (number of occurences)
 int CountChar(const char *text, char find){
@@ -17,7 +44,7 @@ int CountChar(const char *text, char find){
 //Returns: a string array (char**) where each element is a substring separated by the given character
 //         needs the address of an integer to store the length of the array
 //         returns NULL if the parameters were invalid
-char **Split(char *text, char splitChar, int *arrayLength){
+char **Split(const char *text, char splitChar, int *arrayLength){
 
   //Check for parameter validity
   if(text == NULL || arrayLength == NULL)
@@ -47,8 +74,6 @@ char **Split(char *text, char splitChar, int *arrayLength){
     result[i] = buffer; 
     offset += subLength + 1;
   }
-
-  free(text);
 
   //Give back the length of the array
   *arrayLength = length;
