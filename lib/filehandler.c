@@ -61,6 +61,9 @@ char *ReadAllLinesStr(const char *path){
   while(fgets(buffer, sizeof(buffer), fp) != NULL)
     result = Append(result, buffer);
 
+  //Crop down the empty line from the end of the file
+  result = Crop(result, 0, 1);
+
   //Close file
   fclose(fp);
   return result;
