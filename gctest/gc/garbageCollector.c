@@ -8,6 +8,7 @@ typedef struct GCPtr{
 }GCPtr;
 
 static GCPtr *first;
+
 static GCPtr *GetLastGCNode();
 static GCPtr *GetGCNode(void *ptr);
 static void AddGCNode(void *ptr);

@@ -1,5 +1,17 @@
 #include "ext_string.h"
 
+//Frees an array of strings. Array cannot be NULL 
+void FreeStringArray(char **array, int length){
+
+  if(array == NULL)
+    return;
+
+  for(int i = 0; i < length; i++)
+    if(array[i] != NULL)
+      free(array[i]);
+  free(array);
+}
+
 //Takes off the given amount of characters from the front and back of the given string
 //Returns: a new string that contains the cropped text. The original data is freed
 //         returns NULL if the given string is NULL
