@@ -25,6 +25,7 @@ Person *CreatePerson(char *line){
 	int length;
 	char **split = Split(line, ' ', &length);
 
+	//IF SPLIT LENGHT IS 1
 	Person *result;
 	result = malloc(sizeof(Person));
 	result->name = split[0];
@@ -62,14 +63,6 @@ void Run(){
 	char **file = ReadAllLines("test.txt", &fileLength);
 
 	Person *first = CreatePerson(file[0]);
-	/*Person *second = CreatePerson(file[1]);*/
-	/*Person *third = CreatePerson(file[2]);*/
-
-	/*first->next = second;*/
-	/*second->prev = first;*/
-	/*second->next = third;*/
-	/*third->prev = second;*/
-	/*third->next = NULL;*/
 	
 	for(int i = 1; i < fileLength; i++){
 		Person *new = CreatePerson(file[i]);
