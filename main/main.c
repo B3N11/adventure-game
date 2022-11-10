@@ -49,7 +49,7 @@ GameData *HandleRootfile(char *path){
     char *path = Crop(line, 2, 0);
     
     if(line[0] == 'P'){}
-      //Create new panel
+     result->firstItem = CreateItemsFromFile(result->firstItem, path); 
     if(line[0] == 'I'){}
       //Create new item
   }
