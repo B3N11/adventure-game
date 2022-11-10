@@ -2,6 +2,7 @@
 #include <string.h>
 #include "debugmalloc.h"
 
+char *CreateCopyString(char *src);
 void FreeStringArray(char **array, int length);
 char *Crop(char *text, unsigned int front, unsigned int back);
 int CountChar(const char *text, char find);

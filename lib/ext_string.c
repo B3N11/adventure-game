@@ -1,5 +1,27 @@
 #include "ext_string.h"
 
+//Creates a new string and copies the data from the src string to the new one. Src must be null-terminated
+//Returns: a string (char*) with the copied data
+//         returns NULL if src is NULL or its length is 0 (excluding null-terminator)
+char *CreateCopyString(char *src){
+
+  //Check for src validity
+  if(src == NULL)
+    return NULL;
+
+  int length = strlen(src) + 1;
+
+  //Check if there is valid data to copy
+  if(length == 0)
+    return NULL;
+
+  //Allocate memory and copy data
+  char *result = (char *) malloc(length);
+  strcpy(result, src);
+
+  return result;
+}
+
 //Frees an array of strings. Array cannot be NULL 
 void FreeStringArray(char **array, int length){
 
@@ -13,7 +35,7 @@ void FreeStringArray(char **array, int length){
 }
 
 //Takes off the given amount of characters from the front and back of the given string
-//Returns: a new string that contains the cropped text. The original data is freed
+//Returns: a new string that contains the cropped text. The original data is not freed
 //         returns NULL if the given string is NULL
 //         if the sum(front, back) is larger than or equal to the lenght of the string, the original text is returned and it is not freed
 char *Crop(char *text, unsigned int front, unsigned int back){
@@ -35,7 +57,6 @@ char *Crop(char *text, unsigned int front, unsigned int back){
   memcpy(result, text+front, (totalLength - 1));
   *(result + totalLength - 1) = '\0';
 
-  free(text);
   return result;
 }
 

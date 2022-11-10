@@ -1,5 +1,16 @@
 #include "filehandler.h"
 
+//Checks for the existance of a file
+//Returns: true if the file exists
+//         false if the file doesn't exist or the argument is NULL
+bool FileExists(char *file){
+
+  if(file == NULL)
+    return false;
+
+  return access(file, F_OK) == 0; 
+}
+
 //Reads all lines of a file and stores them in a string array
 //Returns: a string array (char **) with each element containing a line of the file
 //         returns NULL if the file can't be opened
@@ -25,14 +36,14 @@ char **ReadAllLines(const char *path, int *length){
     lines = Append(lines, buffer);
 
   //Crop down the empty line from the end of the file
-  lines = Crop(lines, 0, 1);
+  char* crop = Crop(lines, 0, 1);
+  free(lines);
 
   //Split the read lines
-  char **result = Split(lines, '\n', length);
+  char **result = Split(crop, '\n', length);
 
   //Release resources
   fclose(fp);
-  free(lines);
 
   return result;
 }
@@ -62,9 +73,10 @@ char *ReadAllLinesStr(const char *path){
     result = Append(result, buffer);
 
   //Crop down the empty line from the end of the file
-  result = Crop(result, 0, 1);
+  char* crop = Crop(result, 0, 1);
+  free(result);
 
   //Close file
   fclose(fp);
-  return result;
+  return crop;
 }
