@@ -8,6 +8,7 @@ int main(int argc, char **args){
    return 0;
 }
 
+//Checks for the validity of the program starting arguments
 void HandleStartingArgs(int argc, char **args){
 
   if(argc < 3)
@@ -20,11 +21,14 @@ void HandleStartingArgs(int argc, char **args){
     ExitError("The character file does not exist.");
 }
 
+//Creates the basic data from the rootfile
 GameData *HandleRootfile(char *path){
 
+  //Check for parameter validity
   if(path == NULL)
     ExitError("Parameter can't be NULL. (HandleRootfile(char *path))");
 
+  //Read the rootfile
   int rootfileLength;
   char **rootfile = ReadAllLines(path, &rootfileLength);
 
@@ -34,7 +38,8 @@ GameData *HandleRootfile(char *path){
     ExitError("The rootfile does not exist or the structure is invalid.\n     1.[game title]\n     2.[creator name]\n     3.[panel/item file path]\n     .\n     .\n     .");
   }
 
-  GameData *result = (GameData*) malloc(sizeof(GameData));
+  //Create game data
+  GameData *result = CreateGameData();
   result->title = CreateCopyString(rootfile[0]); 
   result->creator = CreateCopyString(rootfile[1]);
 
@@ -49,6 +54,7 @@ GameData *HandleRootfile(char *path){
       //Create new item
   }
 
+  //Free the file content from the memory
   FreeStringArray(rootfile, rootfileLength);
 
   return result;

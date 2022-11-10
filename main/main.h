@@ -1,4 +1,6 @@
 #include "../lib/gameData.h"
+#include "../lib/panel.h"
+#include "../lib/item.h"
 #include "../lib/filehandler.h"
 /*#include "../lib/linkedlist.c"*/
 #include "../lib/ext_string.h"
