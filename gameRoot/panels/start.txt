@@ -1,0 +1,4 @@
+startPanel start
+It's the same night as every other night. You are walking in the back alley behind the Planet Caravan Theatre. Rain drops fall from the rooftops, the hot steam from the kitchen window mixes with the fog that sat on the city. You are thinking about tonight's performance. The play was immersive, the story was compelling, but your mind settles on one specific person. One of the actresses, her character was called the "Evening Swan". You liked it very much.
+P smokeBackAlley "Smoke a cigarette"
+P doNothingBackAlley "Do nothing"
