@@ -10,24 +10,44 @@ Modulok:
 File Handler
 A fájlból olvasásért és abba írásért felel. Az ext_string.h könyvtárat használja a különböző string műveletekhez.
 Függvényei:
-	- FileExists: leellenőrzi, hogy a paraméterül adott file létezik-e
-	- ReadAllLines: Beolvassa egy fájl tartalmát és a sorokat egy string tömb 			 
-    formájában adja vissza
-	- ReadAllLinesStr: Beolvassa egy fájl tartalmát és azt egy darab string formájában 
-    adja vissza
+	- bool FileExists(char *file): leellenőrzi, hogy a paraméterül adott file létezik-e
+			- Bemenet: egy fájl elérési útja
+			- Visszatérési érték: az operáció eredménye (true, ha létezik, egyébként false)
+
+	- char **ReadAllLines(const char *path, int *length): Beolvassa egy fájl tartalmát és a sorokat egy string tömb formájában adja vissza
+			- Bemenet: egy fájl elérési útja és egy int pointer, amibe a végeredményben adott tömb hossza kerül
+			- Visszatérési érték: egy string tömb (egy-egy eleme a fájl egy-egy sora)
+
+	- char *ReadAllLinesStr(const char *path): Beolvassa egy fájl tartalmát és azt egy darab string formájában adja vissza
+			- Bemenet: egy fájl elérési útja
+			- Visszatérési érték: a fájl sorait tartalmazó string
 
 Ext_String
 Egy kiterjesztett string kezelő könyvtár ami a string.h-ra épül.
 Függvényei:
-	- CreateCopyString: A paraméterként kapott stringet lemásolja egy új memória 
-     területbe
-	- FreeStringArray: Felszabadítja egy string tömb memória területét.
-	- Crop: A paraméterként adott mennyiségű karaktereket levágja a string elejéről és 		 
-    végéről
-	- CountChar: Megszámolja egy stringben egy adott karakter előfordulásait
-	- Split: A kapott stringet felbontja egy string tömbre a megadott karaktereknél. A 
-    keresett karakterek nem kerülnek bele a tömbbe
-	- Append: Egy stringhez hozzáadja egy másiknak a tartalmát
+	- char *CreateCopyString(char *src): A paraméterként kapott stringet lemásolja egy új memória területbe
+			- Bemenet: egy string, aminek tartalmát át akarjuk másolni egy új stringbe
+			- Visszatérési érték: egy string, ami az új memóriaterületre mutat, benne az átmásolt értékkel
+
+	- void FreeStringArray(char **array, int length): Felszabadítja egy string tömb memória területét.
+			- Bemenet: a felszabadítandó string tömb és annak a hossza
+			- Visszatérési érték: nincs
+
+	- char *Crop(char *text, unsigned int front, unsigned int back): A paraméterként adott mennyiségű karaktereket levágja a string elejéről és végéről
+			- Bemenet: a string, amit levágunk, az elejéről és a végéről levágni kívánt karakter mennyiség
+			- Visszatérési érték: az új string-re mutató pointer
+
+	- int CountChar(const char *text, char find): Megszámolja egy stringben egy adott karakter előfordulásait
+			- Bemenet: a string, amiben keresünk, a karakter, amit meg akarunk számolni
+			- Visszatérési érték: az előfordulások száma
+
+	- char **Split(const char *text, char splitChar, int *arrayLength): A kapott stringet felbontja egy string tömbre a megadott karaktereknél. A keresett karakterek nem kerülnek bele a tömbbe
+			- Bemenet: a szöveg, amit felbontunk, a karakter ahol elvágjuk és egy int pointer, amiben a kész hosszt tároljuk
+			- Visszatérési érték: a string tömb, ami nem tartalmazza a keresett karaktereket
+
+	- char* Append(char *dst, const char *text): Egy stringhez hozzáadja egy másiknak a tartalmát
+			- Bemenet: a cél string és a forrás string
+			- Visszatérési érték: a cél stringre mutató pointer
 
 Game Data
 A játék főbb adatainak tárolásáért felel. Ilyen adat például a játékos helyzete, vagy a főbb adatokat tartalmazó láncolt listák első elemeinek tárolása
@@ -37,8 +57,13 @@ Struktúra:
 	- az első panel címe a láncolt listában
 	- az első tárgy címe a láncolt listában
 Függvények:
-	- CreateGameData: Létrehoz egy GameData struktúra példányt (üresen)
-	- FreeGameData: Felszabadít mindent az adott struktúrából (a láncolt listákat is felszabadítja)
+	- GameData *CreateGameData(): Létrehoz egy GameData struktúra példányt (üresen)
+			- Bemenet: nincs
+			- Visszatérési érték: egy új GameData példányre mutató pointer
+
+	- void FreeGameData(GameData *data): Felszabadít mindent az adott struktúrából (a láncolt listákat is felszabadítja)
+			- Bemenet: egy GameData példány pointere
+			- Visszatérési érték: nincs
 
 Item és Panel
 Hasonló funkciót látnak el. A játék két fő adatstruktúrája a Panel és az Item. Mindkettő láncolt listában tárolódik és a két header ezek kezelésére
@@ -54,12 +79,29 @@ Struktúra:
 	- név
 	- következő listaelem címe
 Függvények:
-	- GetLastItem: Meghatározza a lista utolsó elemét
-	- CreateItem: Létrehoz egy struktúra példányt
-	- AddItemNode: Adott struktúra példány a lista végére szúrja
-	- CreateItemsFromFile: Egy megadott fájl adatait lista elemekké alapítja
-	- FreeItem: Egy adott struktúra példányt szabadít fel
-	- FreeItemList: A teljes listát felszabadítja
+	- Item *GetLastItem(Item *first): Meghatározza a lista utolsó elemét
+			- Bemenet: a lista első elemének pointere
+			- Visszatérési érték: a lista utolsó elemére mutató pointer
+
+	- Item *CreateItem(char *text): Létrehoz egy struktúra példányt
+			- Bemenet: a string, amiből létrehozásra kerül az Item példány
+			- Visszatérési érték: az új példány pointere
+
+	- Item *AddItemNode(Item *first, Item *node): Adott struktúra példány a lista végére szúrja
+			- Bemenet: a lista első elemének pointere és a hozzáadandó elem pointere
+			- Visszatérési érték: az első item pointere
+
+	- Item *CreateItemsFromFile(Item *first_, char *filePath): Egy megadott fájl adatait lista elemekké alapítja
+			- Bemenet: a lista első elemének pointere és a fájl elérési útvonala
+			- Visszatérési érték: az első elem pointere
+
+	- static void FreeItem(Item *item): Egy adott struktúra példányt szabadít fel
+			- Bemenet: a felszabadítandó Item példány pointere
+			- Visszatérési érték: nincs
+
+	- void FreeItemList(Item *first): A teljes listát felszabadítja
+			- Bemenet: a lista első elemének pointere
+			- Visszatérési érték: nincs
 
 Panel
 A játék panelek adatait tároló struktúrák kezelésére szolgál. Két struktúra: Choice és Panel. A Choice struktúra az adott panel választási lehetőségeit
@@ -76,3 +118,31 @@ Struktúrák:
 			- választások száma
 			- választások listája (tömb)
 			- következő listaelem címe
+Függvények:
+	- Panel *GetLastPanel(Panel *first): Megadja a panel lista utolsó elemét
+			- Bemenet: a lista első elemének pointere
+			- Visszatérési érték: az utolsó elem pointere
+
+	- Panel *CreateAndAddPanel(Panel *first, char *path): Létrehoz egy listaelemet egy fájlból és hozzáadja a listához
+			- Bemenet: a lista első elemének pointere és a fájl útvonala
+			- Visszatérési érték: az első elem pointere
+
+	- static Panel *CreatePanel(char *path): Létrehoz egy panel példányt egy fájlból
+			- Bemenet: a fájl útja, amiből létrehozásra kerül
+			- Visszatérési érték: az új példány pointere
+
+	- Panel *AddPanelNode(Panel *first, Panel *node): Hozzáad egy panel példányt a listához
+			- Bemenet: a lista első elemének pointere, a hozzáadandó panel pointere
+			- Visszatérési érték: az első elem pointere
+
+	- static void FreePanel(Panel *item): Felszabadít egy panel példányt
+			- Bemenet: a felszabadítandó panel pointere
+			- Visszatérési érték: nincs
+
+	- void FreePanelList(Panel *first):  Felszabadítja a teljes listát
+			- Bemenet: a lista első elemének pointere
+			- Visszatérési érték: nincs
+
+	- static Choice *CreateChoice(char *text): Létrehoz egy választás példányt az adott string-ből
+			- Bemenet: a string, amiből létrehozásra kerül
+			- Visszatérési érték: az új példány pointere
