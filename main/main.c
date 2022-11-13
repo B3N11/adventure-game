@@ -5,6 +5,10 @@ int main(int argc, char **args){
    HandleStartingArgs(argc, args);
    GameData *result =  HandleRootfile(args[1]);
   
+   if(result != NULL)
+     printf("DONE!");
+
+   FreeGameData(result);
    return 0;
 }
 
@@ -48,10 +52,10 @@ GameData *HandleRootfile(char *path){
     char *line = rootfile[i];
     char *path = Crop(line, 2, 0);
     
-    if(line[0] == 'P'){}
-     result->firstItem = CreateItemsFromFile(result->firstItem, path); 
-    if(line[0] == 'I'){}
-      //Create new item
+    if(line[0] == 'I')
+      result->firstItem = CreateItemsFromFile(result->firstItem, path); 
+    if(line[0] == 'P')
+      result->firstPanel = CreateAndAddPanel(result->firstPanel, path);
   }
 
   //Free the file content from the memory

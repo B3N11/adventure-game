@@ -1,0 +1,5 @@
+Neon Night
+Beni
+P /home/brokkr/uni/sub/prog/nhf/advGame/gameroot/start.txt
+P /home/brokkr/uni/sub/prog/nhf/advGame/gameroot/smokeCigaretteBackAlley.txt
+P /home/brokkr/uni/sub/prog/nhf/advGame/gameroot/doNothingBackAlley.txt

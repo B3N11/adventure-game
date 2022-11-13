@@ -16,34 +16,14 @@ bool FileExists(char *file){
 //         returns NULL if the file can't be opened
 char **ReadAllLines(const char *path, int *length){
 
-  //Open file in read mode
-  FILE *fp = fopen(path, "r");
-
-  //Check for file validity
-  if(fp == NULL)
-    return NULL;
-
-  //Create tmp buffer to read the file content into
-  char buffer[1024];
-
-  //Allocate memory for storing string
-  char *lines = (char*) malloc(sizeof(char) * 1);
-  *lines = '\0';
-  //strcpy(result, "\0");
-
-  //Read into buffer, copy that into result until EOF is reached
-  while(fgets(buffer, sizeof(buffer), fp) != NULL)
-    lines = Append(lines, buffer);
-
-  //Crop down the empty line from the end of the file
-  char* crop = Crop(lines, 0, 1);
-  free(lines);
+  //Read the content of the file
+  char *lines = ReadAllLinesStr(path);
 
   //Split the read lines
-  char **result = Split(crop, '\n', length);
+  char **result = Split(lines, '\n', length);
 
-  //Release resources
-  fclose(fp);
+  //Free string
+  free(lines);
 
   return result;
 }

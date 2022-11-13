@@ -16,3 +16,4 @@ typedef struct GameData{
 }GameData;
 
 GameData *CreateGameData();
+void FreeGameData(GameData *data);
