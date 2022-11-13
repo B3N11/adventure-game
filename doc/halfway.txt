@@ -1,0 +1,78 @@
+Az eddigiekben modulokat fejlesztettem, amiket általánosan fel lehet használni a házi feladat során.
+
+Modulok:
+	- filehandler.h
+	- ext_string.h
+	- gameData.h
+	- item.h
+	- panel.h
+
+File Handler
+A fájlból olvasásért és abba írásért felel. Az ext_string.h könyvtárat használja a különböző string műveletekhez.
+Függvényei:
+	- FileExists: leellenőrzi, hogy a paraméterül adott file létezik-e
+	- ReadAllLines: Beolvassa egy fájl tartalmát és a sorokat egy string tömb 			 
+    formájában adja vissza
+	- ReadAllLinesStr: Beolvassa egy fájl tartalmát és azt egy darab string formájában 
+    adja vissza
+
+Ext_String
+Egy kiterjesztett string kezelő könyvtár ami a string.h-ra épül.
+Függvényei:
+	- CreateCopyString: A paraméterként kapott stringet lemásolja egy új memória 
+     területbe
+	- FreeStringArray: Felszabadítja egy string tömb memória területét.
+	- Crop: A paraméterként adott mennyiségű karaktereket levágja a string elejéről és 		 
+    végéről
+	- CountChar: Megszámolja egy stringben egy adott karakter előfordulásait
+	- Split: A kapott stringet felbontja egy string tömbre a megadott karaktereknél. A 
+    keresett karakterek nem kerülnek bele a tömbbe
+	- Append: Egy stringhez hozzáadja egy másiknak a tartalmát
+
+Game Data
+A játék főbb adatainak tárolásáért felel. Ilyen adat például a játékos helyzete, vagy a főbb adatokat tartalmazó láncolt listák első elemeinek tárolása
+Struktúra:
+	- játék neve
+	- játék készítője
+	- az első panel címe a láncolt listában
+	- az első tárgy címe a láncolt listában
+Függvények:
+	- CreateGameData: Létrehoz egy GameData struktúra példányt (üresen)
+	- FreeGameData: Felszabadít mindent az adott struktúrából (a láncolt listákat is felszabadítja)
+
+Item és Panel
+Hasonló funkciót látnak el. A játék két fő adatstruktúrája a Panel és az Item. Mindkettő láncolt listában tárolódik és a két header ezek kezelésére
+ad lehetőséget. Hasonló funkciókat tartalmaznak, csak a saját adatstruktúrájukhoz. Ezek a funkciók:
+	- Lista elem létrehozása
+	- Utolsó listaelem megkeresése
+	- Adott elem felszabadítása
+	- Teljes lista felszabadítása
+
+Item
+Struktúra:
+	- azonosító
+	- név
+	- következő listaelem címe
+Függvények:
+	- GetLastItem: Meghatározza a lista utolsó elemét
+	- CreateItem: Létrehoz egy struktúra példányt
+	- AddItemNode: Adott struktúra példány a lista végére szúrja
+	- CreateItemsFromFile: Egy megadott fájl adatait lista elemekké alapítja
+	- FreeItem: Egy adott struktúra példányt szabadít fel
+	- FreeItemList: A teljes listát felszabadítja
+
+Panel
+A játék panelek adatait tároló struktúrák kezelésére szolgál. Két struktúra: Choice és Panel. A Choice struktúra az adott panel választási lehetőségeit
+tárolja. A Panel pedig az adott panel egyéb adatait.
+Struktúrák:
+	1)Choice
+			- a választás típusa (Mozgás panelre v. tárgy felvétel)
+			- a választás szövege
+			- a választás céljának azonosítója (pl.: köv. panel, felvehető tárgy)
+	2)Panel
+			- panel azonosítója
+			- panel típusa (start, normal, end)
+			- panel szövege
+			- választások száma
+			- választások listája (tömb)
+			- következő listaelem címe
