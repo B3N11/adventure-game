@@ -6,8 +6,9 @@ Panel *GetLastPanel(Panel *first){
     return NULL;
 
   Panel *result = first;
+  ////////// THIS HERE IS FUCKED!!! WHY?? //////////
   while(result->next != NULL)
-    return result;
+    result = result->next;
 
   return result;
 }
@@ -15,16 +16,20 @@ Panel *GetLastPanel(Panel *first){
 Panel *CreateAndAddPanel(Panel *first, char *path){
   Panel *new = CreatePanel(path);
   Panel *result = AddPanelNode(first, new);
-
+ 
   return result;
 }
 
 static Panel *CreatePanel(char *path){
 
+  //Checks for parameter validity
+  if(path == NULL)
+    return NULL;
+
   int fileLength;
   char **file = ReadAllLines(path, &fileLength);
 
-  if(fileLength <= 2){
+  if(fileLength <= 2 || file == NULL){
     FreeStringArray(file, fileLength);
     return NULL;
   }
@@ -44,6 +49,7 @@ static Panel *CreatePanel(char *path){
   result->id = CreateCopyString(split[0]);
   result->type = CreateCopyString(split[1]);
   result->text = CreateCopyString(file[1]);
+  result->next = NULL;
 
   result->choiceCount = fileLength - 2;
   result->choices = malloc(sizeof(Choice*) * result->choiceCount);
@@ -52,6 +58,7 @@ static Panel *CreatePanel(char *path){
 
   FreeStringArray(file, fileLength);
   FreeStringArray(split, splitLength);
+
   return result;
 }
 

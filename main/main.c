@@ -2,14 +2,16 @@
 
 int main(int argc, char **args){
 
-   HandleStartingArgs(argc, args);
-   GameData *result =  HandleRootfile(args[1]);
-  
-   if(result != NULL)
-     printf("DONE!");
+  setbuf(stdout, NULL);
 
-   FreeGameData(result);
-   return 0;
+  HandleStartingArgs(argc, args);
+  GameData *result =  HandleRootfile(args[1]);
+  
+  if(result != NULL)
+    printf("DONE!");
+
+  FreeGameData(result);
+  return 0;
 }
 
 //Checks for the validity of the program starting arguments
@@ -56,6 +58,8 @@ GameData *HandleRootfile(char *path){
       result->firstItem = CreateItemsFromFile(result->firstItem, path); 
     if(line[0] == 'P')
       result->firstPanel = CreateAndAddPanel(result->firstPanel, path);
+
+    free(path);
   }
 
   //Free the file content from the memory
