@@ -4,7 +4,7 @@ int main(int argc, char **args){
 
   setbuf(stdout, NULL);
 
-  HandleStartingArgs(argc, args);
+  //HandleStartingArgs(argc, args);
   GameData *result =  HandleRootfile(args[1]);
   
   if(result != NULL)
@@ -31,12 +31,13 @@ void HandleStartingArgs(int argc, char **args){
 GameData *HandleRootfile(char *path){
 
   //Check for parameter validity
-  if(path == NULL)
-    ExitError("Parameter can't be NULL. (HandleRootfile(char *path))");
+  /*if(path == NULL)*/
+    /*ExitError("Parameter can't be NULL. (HandleRootfile(char *path))");*/
 
   //Read the rootfile
   int rootfileLength;
-  char **rootfile = ReadAllLines(path, &rootfileLength);
+  //char **rootfile = ReadAllLines(path, &rootfileLength);
+  char **rootfile = ReadAllLines("root/root.txt", &rootfileLength);
 
   //Check if file structure is valid
   if(rootfile == NULL || rootfileLength <= 2){
@@ -48,6 +49,8 @@ GameData *HandleRootfile(char *path){
   GameData *result = CreateGameData();
   result->title = CreateCopyString(rootfile[0]); 
   result->creator = CreateCopyString(rootfile[1]);
+  result->firstItem = NULL;
+  result->firstPanel = NULL;
 
   for(int i = 2; i < rootfileLength; i++){
     

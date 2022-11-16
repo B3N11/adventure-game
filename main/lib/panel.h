@@ -26,3 +26,4 @@ Panel *AddPanelNode(Panel *first, Panel *node);
 static void FreePanel(Panel *item);
 void FreePanelList(Panel *first);
 static Choice *CreateChoice(char *text);
+static void FreeChoice(Choice *choice);

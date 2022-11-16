@@ -6,7 +6,6 @@ Panel *GetLastPanel(Panel *first){
     return NULL;
 
   Panel *result = first;
-  ////////// THIS HERE IS FUCKED!!! WHY?? //////////
   while(result->next != NULL)
     result = result->next;
 
@@ -93,8 +92,7 @@ static Choice *CreateChoice(char *text){
 
   //Crop the first 2 character, the ID and the opening " from the beginning and the closing " from the end
   int cropFromStart = strlen(split[1]) + 4;
-  char *crop = Crop(text, cropFromStart, 1); 
-  result->text=crop;
+  result->text = Crop(text, cropFromStart, 1); 
 
   //Free the split array
   FreeStringArray(split, length);
