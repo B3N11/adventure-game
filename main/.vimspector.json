@@ -1,21 +1,15 @@
 {
   "configurations": {
-    "attach": {
+    "Launch": {
       "adapter": "vscode-cpptools",
       "default": true,
-      "breakpoints":{
-        "exceptions":{
-          "all":"N",
-          "uncaught": "N"
-        }
-      },
       "configuration": {
         "name": "C debug (VSCode-C++ Tools)",
-        "type":"gdb",
         "request": "launch",
-        "externalConsole": true,
         "program":"${workspaceRoot}/kalandjatek",
-        "cwd":"${workspaceRoot}"
+        "cwd":"${workspaceRoot}",
+        "MIMode":"gdb",
+        "stopOnEntry": true 
       }
     }
   }
