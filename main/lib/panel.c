@@ -116,7 +116,7 @@ static void FreeChoice(Choice *choice){
 static void FreePanel(Panel *panel){
 
   //Check parameter validity
-  if(panel != NULL)
+  if(panel == NULL)
     return;
 
   //Free the id
