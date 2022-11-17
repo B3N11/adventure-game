@@ -27,6 +27,7 @@ Item *CreateItem(char *text){
   result->id = CreateCopyString(split[0]);
   result->name = CreateCopyString(split[1]);
   result->next = NULL;
+  result->owned = false;
 
   FreeStringArray(split, splitLength);
   return result;

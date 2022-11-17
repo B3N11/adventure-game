@@ -6,6 +6,7 @@ typedef struct Item{
 
     char *id;
     char *name;
+    bool owned;
     struct Item *next;
 }Item;
 

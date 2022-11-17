@@ -8,7 +8,7 @@ int main(int argc, char **args){
   GameData *result =  HandleRootfile(args[1]);
   
   if(result != NULL)
-    printf("DONE!");
+    printf("DONE!\n");
 
   FreeGameData(result);
   return 0;
