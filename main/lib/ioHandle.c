@@ -86,7 +86,7 @@ int CharsUntilNextSpace(const char *text, int index){
 		return -1;
 
 	int result = 0;
-	for(int i = index; text[i] != '\0'; i++){
+	for(int i = index + 1; text[i] != '\0'; i++){
 		if(text[i] == ' ')
 			return result;
 		result++;

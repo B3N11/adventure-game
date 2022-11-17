@@ -97,12 +97,17 @@ void DisplayText(const char *text,Coordinates window){
 
 int main(){
 
-	int height = 30;
-	int widht = 70;
-	DrawScreen(height, widht, COL_BLACK, COL_LIGHTGREEN);
+	printf("Press a key!\n");
+	econio_rawmode();
+	econio_getch();
+	econio_normalmode();
+	printf("Thanks!\n");
+	/*int height = 30;*/
+	/*int widht = 70;*/
+	/*DrawScreen(height, widht, COL_BLACK, COL_LIGHTGREEN);*/
 
-	Coordinates data = {.minx=2, .miny=1, .maxx=68, .maxy=28};
-	DisplayText("Hello there fellow kids! How is it going out there? Are the otherthing big kids as scary as I am? I hope not, altough what I'm      saying is completely improvised.", data);
+	/*Coordinates data = {.minx=2, .miny=1, .maxx=68, .maxy=28};*/
+	/*DisplayText("Hello there fellow kids! How is it going out there? Are the otherthing big kids as scary as I am? I hope not, altough what I'm      saying is completely improvised.", data);*/
 
 	/*econio_rawmode();*/
 	/*econio_gotoxy(50, 2);*/

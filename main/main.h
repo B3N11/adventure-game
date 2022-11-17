@@ -1,5 +1,6 @@
 #include "lib/gameData.h"
 #include "lib/filehandler.h"
+#include "lib/ioHandle.h"
 /*#include "../lib/linkedlist.c"*/
 #include "lib/ext_string.h"
 #include "lib/debugmalloc.h"
