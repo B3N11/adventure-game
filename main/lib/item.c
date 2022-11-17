@@ -81,7 +81,7 @@ Item *CreateItemsFromFile(Item *first_, char *filePath){
 
 static void FreeItem(Item *item){
 
-  if(item != NULL)
+  if(item == NULL)
     return;
 
   if(item->id != NULL)

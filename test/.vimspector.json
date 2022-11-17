@@ -1,13 +1,16 @@
 {
-	"configurations":{
-		"CodeLLDB":{
-			"adapter": "CodeLLDB",
-			"configuration":{
-			"name": "launch",
-			"type": "lldb",
-			"request": "launch",
-			"program": "${workspaceFolder}/debugtest"
-			} 
-		} 
-	}
+  "configurations": {
+    "Launch": {
+      "adapter": "vscode-cpptools",
+      "default": true,
+      "configuration": {
+        "name": "C debug (VSCode-C++ Tools)",
+        "request": "launch",
+        "program":"${workspaceRoot}/a.out",
+        "cwd":"${workspaceRoot}",
+        "MIMode":"gdb",
+        "stopOnEntry": true 
+      }
+    }
+  }
 }

@@ -3,6 +3,8 @@
 GameData *CreateGameData(){
 
     GameData *result = (GameData*) malloc(sizeof(GameData));
+    result->firstItem = NULL;
+    result->firstPanel = NULL;
 
     return result;
 }

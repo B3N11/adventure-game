@@ -1,0 +1,2 @@
+neonLamp "A slightly glowing neon lamp"
+coffeCup "A broken cup from the street cafe"
