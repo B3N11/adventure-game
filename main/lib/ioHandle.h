@@ -23,3 +23,4 @@ int CharsUntilNextSpace(const char *text, int index);
 void DisplayText(const char *text, Window window);
 void ClearWindow(Window window);
 void DrawScreen(Screen *screen, int background, int foreground);
+char GetPressedKey();

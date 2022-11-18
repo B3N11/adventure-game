@@ -1,5 +1,15 @@
 #include "ioHandle.h"
 
+//Waits until the user presses a key. Returns the pressed key.
+char GetPressedKey(){
+
+	econio_rawmode();
+	char result = (char) econio_getch();
+	econio_normalmode();
+
+	return result;
+}
+
 void DrawScreen(Screen *screen, int background, int foreground){
 
 	econio_clrscr();
