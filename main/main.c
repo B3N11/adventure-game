@@ -4,14 +4,19 @@ int main(int argc, char **args){
 
   setbuf(stdout, NULL);
 
+  //Run the program
+  Run(argc, args);
+  
+  return 0;
+}
+
+//Run the main functions of the program
+void Run(int argc, char **args){
+
   //HandleStartingArgs(argc, args);
   GameData *result =  HandleRootfile(args[1]);
-  
-  if(result != NULL)
-    printf("DONE!\n");
 
   FreeGameData(result);
-  return 0;
 }
 
 //Checks for the validity of the program starting arguments

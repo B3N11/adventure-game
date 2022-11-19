@@ -1,3 +1,6 @@
+#ifndef ITEM_H
+#define ITEM_H
+
 #include "filehandler.h"
 #include "ext_string.h"
 #include <stdbool.h> 
@@ -16,3 +19,5 @@ Item *AddItemNode(Item *first, Item *node);
 Item *CreateItemsFromFile(Item *first_, char *filePath);
 static void FreeItem(Item *item);
 void FreeItemList(Item *first);
+
+#endif

@@ -1,12 +1,16 @@
+#ifndef MAIN_H
+#define MAIN_H
+
 #include "lib/gameData.h"
 #include "lib/filehandler.h"
-#include "lib/ioHandle.h"
-/*#include "../lib/linkedlist.c"*/
 #include "lib/ext_string.h"
 #include "lib/debugmalloc.h"
 #include "lib/logger.h"
 #include <unistd.h>
 
+void Run(int argc, char **args);
 int main(int argc, char **args);
 void HandleStartingArgs(int argc, char **args);
 GameData *HandleRootfile(char *path);
+
+#endif

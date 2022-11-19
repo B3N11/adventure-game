@@ -1,3 +1,6 @@
+#ifndef IOHANDLE_H
+#define IOHANDLE_H
+
 #include "econio.h"
 #include <string.h>
 #include <stdio.h>
@@ -24,3 +27,5 @@ void DisplayText(const char *text, Window window);
 void ClearWindow(Window window);
 void DrawScreen(Screen *screen, int background, int foreground);
 char GetPressedKey();
+
+#endif

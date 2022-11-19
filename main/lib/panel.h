@@ -1,3 +1,6 @@
+#ifndef PANEL_H
+#define PANEL_H
+
 #include "filehandler.h"
 #include "ext_string.h"
 #include <stdbool.h> 
@@ -27,3 +30,5 @@ static void FreePanel(Panel *item);
 void FreePanelList(Panel *first);
 static Choice *CreateChoice(char *text);
 static void FreeChoice(Choice *choice);
+
+#endif

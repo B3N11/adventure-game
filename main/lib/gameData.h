@@ -1,10 +1,10 @@
+#ifndef GAMEDATA_H
+#define GAMEDATA_H
+
 #include "debugmalloc.h"
 #include "item.h"
 #include "panel.h"
-
-typedef struct PlayerSave{
-
-}PlayerSave;
+#include "ioHandle.h"
 
 typedef struct GameData{
 
@@ -12,8 +12,10 @@ typedef struct GameData{
   char *creator;
   Panel *firstPanel;
   Item *firstItem;
-  PlayerSave *save;
+  Screen *screen;
 }GameData;
 
 GameData *CreateGameData();
 void FreeGameData(GameData *data);
+
+#endif
