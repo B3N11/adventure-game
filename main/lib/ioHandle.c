@@ -1,5 +1,31 @@
 #include "ioHandle.h"
 
+//Displays the title screen for the game
+void DrawTitleScreen(Screen *screen, GameData *data, int background, int foreground){
+
+	if(data == NULL)
+		return;
+
+	DrawScreen(screen, background, foreground);
+
+	//Display title
+	int verticalCenter = (screen->topWindow.maxY - screen->topWindow.minY) / 2;
+	int titlePos = (screen->width - strlen(data->title) - 2) / 2;
+	econio_gotoxy(titlePos, verticalCenter);
+	puts(data->title);
+
+	int creatorPos = (screen->width - strlen(data->creator) - 2) / 2;
+	econio_gotoxy(creatorPos, verticalCenter + 1);
+	puts(data->creator);
+
+	int promptPos = (screen->width - 17) / 2;
+	int botVerticalCenter = (screen->bottomWindow.maxY - screen->bottomWindow.minY) / 2 + 1;
+	econio_gotoxy(promptPos,screen->split + botVerticalCenter);
+	puts("Press any key!");
+
+	ResetCursor();
+}
+
 //Waits until the user presses a key. Returns the pressed key.
 char GetPressedKey(){
 
@@ -11,6 +37,9 @@ char GetPressedKey(){
 }
 
 void DrawScreen(Screen *screen, int background, int foreground){
+
+	if(screen == NULL)
+		return;
 
 	econio_clrscr();
 	econio_textbackground(background);
@@ -27,6 +56,8 @@ void DrawScreen(Screen *screen, int background, int foreground){
 		}
 		printf("*\n");
 	}
+
+	ResetCursor();
 }
 
 void ClearWindow(Window window){
@@ -39,6 +70,8 @@ void ClearWindow(Window window){
 		for(int j = 0; j < horizontalMove; j++)
 			printf(" ");
 	}
+
+	ResetCursor();
 }
 
 //Displays a text in the given window
@@ -88,6 +121,8 @@ void DisplayText(const char *text, Window window){
 			index++;
 		}
 	}
+
+	ResetCursor();
 }
 
 int CharsUntilNextSpace(const char *text, int index){
@@ -103,4 +138,9 @@ int CharsUntilNextSpace(const char *text, int index){
 	}
 
 	return result;
+}
+
+void ResetCursor(){
+
+	econio_gotoxy(0, 0);
 }

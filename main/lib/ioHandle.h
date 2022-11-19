@@ -2,6 +2,7 @@
 #define IOHANDLE_H
 
 #include "econio.h"
+#include "gameData.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -27,5 +28,7 @@ void DisplayText(const char *text, Window window);
 void ClearWindow(Window window);
 void DrawScreen(Screen *screen, int background, int foreground);
 char GetPressedKey();
+void DrawTitleScreen(Screen *screen, GameData *data, int background, int foreground);
+void ResetCursor();
 
 #endif

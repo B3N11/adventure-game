@@ -14,9 +14,14 @@ int main(int argc, char **args){
 void Run(int argc, char **args){
 
   //HandleStartingArgs(argc, args);
-  GameData *result =  HandleRootfile(args[1]);
+  GameData *data =  HandleRootfile(args[1]);
+  Screen *screen = CreateScreen();
+  DrawTitleScreen(screen, data, COL_DARKGRAY, COL_LIGHTYELLOW);
+  GetPressedKey();
 
-  FreeGameData(result);
+  //Release resources
+  FreeGameData(data);
+  free(screen);
 }
 
 //Checks for the validity of the program starting arguments
@@ -72,6 +77,21 @@ GameData *HandleRootfile(char *path){
 
   //Free the file content from the memory
   FreeStringArray(rootfile, rootfileLength);
+
+  return result;
+}
+
+//Create new screen
+Screen *CreateScreen(){
+
+  Screen *result = (Screen*) malloc(sizeof(Screen));
+
+  result->width = 70;
+  result->height = 30;
+  result->split = result->height - (result->height * 0.2);
+
+  result->topWindow = (Window){.minX=2, .minY=2, .maxX = result->width - 2, .maxY=result->split - 1};
+  result->bottomWindow = (Window) {.minX=2, .minY=result->split+1, .maxX=result->width-2, .maxY=result->height-2};
 
   return result;
 }

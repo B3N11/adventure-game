@@ -5,10 +5,10 @@ debug: ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/gameData.o ./ob
 	gcc ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/gameData.o ./obj/item.o ./obj/logger.o ./obj/panel.o ./obj/econio.o ./obj/ioHandle.o -o kalandjatek -g
 
 ./obj/econio.o: ./lib/econio.c
-	gcc ./lib/econio.c -o ./obj/econio.o
+	gcc ./lib/econio.c -c -o ./obj/econio.o -g
 
 ./obj/ioHandle.o: ./lib/ioHandle.c
-	gcc ./lib/ioHandle.c -o ./obj/ioHandle.o -g
+	gcc ./lib/ioHandle.c -c -o ./obj/ioHandle.o -g
 
 ./obj/ext_string.o: ./lib/ext_string.c
 		gcc ./lib/ext_string.c -c -o ./obj/ext_string.o -g

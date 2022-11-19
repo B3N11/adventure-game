@@ -4,7 +4,6 @@
 #include "debugmalloc.h"
 #include "item.h"
 #include "panel.h"
-#include "ioHandle.h"
 
 typedef struct GameData{
 
@@ -12,7 +11,6 @@ typedef struct GameData{
   char *creator;
   Panel *firstPanel;
   Item *firstItem;
-  Screen *screen;
 }GameData;
 
 GameData *CreateGameData();
