@@ -13,12 +13,18 @@ int main(int argc, char **args){
 //Run the main functions of the program
 void Run(int argc, char **args){
 
+  //Handle arguments and initiate program data
   //HandleStartingArgs(argc, args);
   GameData *data =  HandleRootfile(args[1]);
   Screen *screen = CreateScreen();
+
+  //Create title screen and wait for input to progress
   DrawTitleScreen(screen, data, COL_DARKGRAY, COL_LIGHTYELLOW);
   GetPressedKey();
 
+  //Run game
+  RunGame(screen, data);
+  
   //Release resources
   FreeGameData(data);
   free(screen);

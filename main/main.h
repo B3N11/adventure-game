@@ -2,6 +2,7 @@
 #define MAIN_H
 
 #include "lib/gameData.h"
+#include "lib/game.h"
 #include "lib/filehandler.h"
 #include "lib/ext_string.h"
 #include "lib/debugmalloc.h"

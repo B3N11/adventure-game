@@ -12,6 +12,23 @@ Panel *GetLastPanel(Panel *first){
   return result;
 }
 
+Panel *GetPanel(Panel *first, char *id){
+
+  if(id == NULL || first == NULL)
+    return NULL;
+
+  Panel *result = first;
+  while(result->next != NULL){
+    
+    if(strcmp(result->id, id) == 0)
+      return result;
+
+    result = result->next;
+  }
+  
+  return NULL;
+}
+
 Panel *CreateAndAddPanel(Panel *first, char *path){
   Panel *new = CreatePanel(path);
   Panel *result = AddPanelNode(first, new);
@@ -48,6 +65,7 @@ static Panel *CreatePanel(char *path){
   result->id = CreateCopyString(split[0]);
   result->type = CreateCopyString(split[1]);
   result->text = CreateCopyString(file[1]);
+  result->active = false;
   result->next = NULL;
 
   result->choiceCount = fileLength - 2;

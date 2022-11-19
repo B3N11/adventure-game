@@ -3,7 +3,7 @@
 //Displays the title screen for the game
 void DrawTitleScreen(Screen *screen, GameData *data, int background, int foreground){
 
-	if(data == NULL)
+	if(screen == NULL)
 		return;
 
 	DrawScreen(screen, background, foreground);
@@ -47,16 +47,20 @@ void DrawScreen(Screen *screen, int background, int foreground){
 	
 	for(int i = 0; i < screen->height; i++){
 
-		printf("*");
-		for(int j = 1; j < screen->width - 1; j++){
-			if(i == 0 || i == screen->height - 1 || i == screen->split)
-				printf("*");
+		econio_gotoxy(0, i);
+		for(int j = 0; j < screen->width; j++){
+
+			if(i == 0 || i == screen->height - 1 || i == screen->split || j == 0 || j == screen->width - 1)
+				econio_textbackground(foreground);
 			else
-				printf(" ");
+				econio_textbackground(background);
+
+			printf(" ");
 		}
-		printf("*\n");
 	}
 
+	econio_textbackground(background);
+	econio_textcolor(foreground);
 	ResetCursor();
 }
 

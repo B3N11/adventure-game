@@ -1,5 +1,5 @@
-#ifndef GAMEDATA_H
-#define GAMEDATA_H
+#ifndef GAME_H
+#define GAME_H
 
 #include "debugmalloc.h"
 #include "item.h"

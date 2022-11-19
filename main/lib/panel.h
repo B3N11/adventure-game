@@ -17,6 +17,7 @@ typedef struct Panel{
     char *id;
     char *type;
     char *text;
+    bool active;
     int choiceCount;
     Choice **choices;
     struct Panel *next;
@@ -30,5 +31,6 @@ static void FreePanel(Panel *item);
 void FreePanelList(Panel *first);
 static Choice *CreateChoice(char *text);
 static void FreeChoice(Choice *choice);
+Panel *GetPanel(Panel *first, char *id);
 
 #endif

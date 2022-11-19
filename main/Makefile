@@ -1,8 +1,8 @@
-output: ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/gameData.o ./obj/item.o ./obj/logger.o ./obj/panel.o ./obj/econio.o ./obj/ioHandle.o 
-	gcc ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/gameData.o ./obj/item.o ./obj/logger.o ./obj/panel.o ./obj/econio.o ./obj/ioHandle.o -o kalandjatek
+output: ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/game.o ./obj/gameData.o ./obj/item.o ./obj/logger.o ./obj/panel.o ./obj/econio.o ./obj/ioHandle.o 
+	gcc ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/game.o ./obj/gameData.o ./obj/item.o ./obj/logger.o ./obj/panel.o ./obj/econio.o ./obj/ioHandle.o -o kalandjatek
 
-debug: ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/gameData.o ./obj/item.o ./obj/logger.o ./obj/panel.o ./obj/econio.o ./obj/ioHandle.o
-	gcc ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/gameData.o ./obj/item.o ./obj/logger.o ./obj/panel.o ./obj/econio.o ./obj/ioHandle.o -o kalandjatek -g
+debug: ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/game.o ./obj/item.o ./obj/logger.o ./obj/panel.o ./obj/econio.o ./obj/ioHandle.o
+	gcc ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/game.o ./obj/item.o ./obj/logger.o ./obj/panel.o ./obj/econio.o ./obj/ioHandle.o -o kalandjatek -g
 
 ./obj/econio.o: ./lib/econio.c
 	gcc ./lib/econio.c -c -o ./obj/econio.o -g
@@ -24,6 +24,9 @@ debug: ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/gameData.o ./ob
 
 ./obj/panel.o: ./lib/panel.c
 	gcc ./lib/panel.c -c -o ./obj/panel.o -g
+
+./obj/game.o: ./lib/game.c
+	gcc ./lib/game.c -c -o ./obj/game.o -g
 
 ./obj/gameData.o: ./lib/gameData.c
 	gcc ./lib/gameData.c -c -o ./obj/gameData.o -g
