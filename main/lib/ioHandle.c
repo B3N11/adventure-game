@@ -144,6 +144,12 @@ int CharsUntilNextSpace(const char *text, int index){
 	return result;
 }
 
+void DisplayPanel(Panel *panel){
+
+	if(panel == NULL)
+		return;
+}
+
 void ResetCursor(){
 
 	econio_gotoxy(0, 0);

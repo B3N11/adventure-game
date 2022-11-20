@@ -5,17 +5,23 @@ int main(int argc, char **args){
   setbuf(stdout, NULL);
 
   //Run the program
-  Run(argc, args);
+  bool result = Run(argc, args);
   
+  if(!result)
+    return -1;
   return 0;
 }
 
 //Run the main functions of the program
-void Run(int argc, char **args){
+bool Run(int argc, char **args){
 
+  char *result;
   //Handle arguments and initiate program data
-  //HandleStartingArgs(argc, args);
+  //result = HandleStartingArgs(argc, args);
+  //if(result != NULL)
+  //  ExitError(result);
   GameData *data =  HandleRootfile(args[1]);
+  result = HandleSaveFile(args[2], data);
   Screen *screen = CreateScreen();
 
   //Create title screen and wait for input to progress
@@ -28,19 +34,23 @@ void Run(int argc, char **args){
   //Release resources
   FreeGameData(data);
   free(screen);
+
+  return true;
 }
 
 //Checks for the validity of the program starting arguments
-void HandleStartingArgs(int argc, char **args){
+char *HandleStartingArgs(int argc, char **args){
 
   if(argc < 3)
-    ExitError("Invalid parameters.\n      kalandjatek [rootfile] [characterfile]");
+    return "Invalid parameters.\n      kalandjatek [rootfile] [characterfile]";
 
   if(!FileExists(args[1]))
-    ExitError("The rootfile does not exist.");
+    return "The rootfile does not exist.";
 
   if(!FileExists(args[2]))
-    ExitError("The character file does not exist.");
+    return "The character file does not exist.";
+
+  return NULL;
 }
 
 //Creates the basic data from the rootfile
@@ -85,6 +95,36 @@ GameData *HandleRootfile(char *path){
   FreeStringArray(rootfile, rootfileLength);
 
   return result;
+}
+
+char *HandleSaveFile(char *path, GameData *data){
+
+  if(path == NULL)
+    return "Parameter cannot be NULL";
+
+  int length;
+  char **file = ReadAllLines(path, &length);
+
+  if(file == NULL)
+    return "Problem opening the save file.";
+
+  if(length <= 1){
+    FreeStringArray(file, length);
+    return "Invalid save file format.";
+  }
+
+  SetActivePanel(data->firstPanel, file[0]);
+
+  int splitLength;
+  char **split = Split(file[1], ' ', &splitLength);
+
+  for(int i = 0; i < splitLength; i++)
+    SetItemOwnership(data->firstItem, split[i]);
+
+  FreeStringArray(split, splitLength);
+  FreeStringArray(file, length);
+
+  return NULL;
 }
 
 //Create new screen

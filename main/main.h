@@ -10,10 +10,11 @@
 #include "lib/ioHandle.h"
 #include <unistd.h>
 
-void Run(int argc, char **args);
+bool Run(int argc, char **args);
 int main(int argc, char **args);
-void HandleStartingArgs(int argc, char **args);
+char *HandleStartingArgs(int argc, char **args);
 GameData *HandleRootfile(char *path);
 Screen *CreateScreen();
+char *HandleSaveFile(char *path, GameData *data);
 
 #endif

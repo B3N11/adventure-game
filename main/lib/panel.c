@@ -12,6 +12,51 @@ Panel *GetLastPanel(Panel *first){
   return result;
 }
 
+Panel *GetStartPanel(Panel *first){
+
+  if(first == NULL)
+    return NULL;
+
+  Panel *result = first;
+  while(result->next != NULL){
+    if(strcmp(result->type, "start") == 0)
+      return result;
+
+    result = result->next;
+  }
+
+  return NULL;
+}
+
+Panel *GetActivePanel(Panel *first){
+
+  if(first == NULL)
+    return NULL;
+
+  Panel *result = first;
+  while(result->next != NULL){
+    if(result->active)
+      return result;
+
+    result = result->next;
+  }
+
+  return NULL;
+}
+
+void SetActivePanel(Panel *first, char *id){
+
+  if(first == NULL || id == NULL)
+    return;
+
+  Panel *result = GetPanel(first, id);
+
+  if(result == NULL)
+    return;
+
+  result->active = true;
+}
+
 Panel *GetPanel(Panel *first, char *id){
 
   if(id == NULL || first == NULL)

@@ -7,9 +7,38 @@ Item *GetLastItem(Item *first){
 
   Item *result = first;
   while(result->next != NULL)
-    return result;
-
+    result = result->next;
+  
   return result;
+}
+
+Item *GetItem(Item *first, char *id){
+
+  if(first == NULL || id == NULL)
+    return NULL;
+
+  Item *result = first;
+  while(result->next != NULL){
+    if(strcmp(result->id, id) == 0)
+      return result;
+
+    result = result->next;
+  }
+  
+  return NULL;
+}
+
+void SetItemOwnership(Item *first, char *id){
+
+  if(first == NULL || id == NULL)
+    return;
+
+  Item *result = GetItem(first, id);
+
+  if(result == NULL)
+    return;
+
+  result->owned = true;
 }
 
 Item *CreateItem(char *text){
