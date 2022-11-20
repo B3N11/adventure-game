@@ -85,6 +85,12 @@ GameData *HandleRootfile(char *path){
     char *line = rootfile[i];
     char *path = Crop(line, 2, 0);
     
+    if(!FileExists(path)){
+      FreeStringArray(rootfile, rootfileLength);
+      FreeGameData(result);
+      ExitError("One of the files in rootfile are invalid.");
+    }
+
     if(line[0] == 'I')
       result->firstItem = CreateItemsFromFile(result->firstItem, path); 
     if(line[0] == 'P')
