@@ -11,5 +11,6 @@
 bool FileExists(char *file);
 char **ReadAllLines(const char *path, int *length);
 char *ReadAllLinesStr(const char *path);
+void WriteAllLines(char *path, char **array, int length);
 
 #endif

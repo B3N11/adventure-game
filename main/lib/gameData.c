@@ -5,6 +5,9 @@ GameData *CreateGameData(){
     GameData *result = (GameData*) malloc(sizeof(GameData));
     result->firstItem = NULL;
     result->firstPanel = NULL;
+    result->creator = NULL;
+    result->title = NULL;
+    result->saveFile = NULL;
 
     return result;
 }
@@ -19,6 +22,9 @@ void FreeGameData(GameData *data){
 
   if(data->creator != NULL)
     free(data->creator);
+
+  if(data->saveFile != NULL)
+    free(data->saveFile);
 
   if(data->firstItem != NULL)
     FreeItemList(data->firstItem);

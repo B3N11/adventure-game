@@ -136,11 +136,11 @@ char **Split(const char *text, char splitChar, int *arrayLength){
 char* Append(char *dst, const char *text){
 
   //Check for parameter validity
-  if(dst == NULL || text == NULL)
+  if(text == NULL)
     return NULL;
 
   //Get length of the parameters and create a total length (+1 byte for the \0)
-  int dstLength = strlen(dst);
+  int dstLength = dst == NULL ? 0 : strlen(dst);
   int textLength = strlen(text);
   int length = dstLength + textLength + 1;
 

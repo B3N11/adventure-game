@@ -58,7 +58,28 @@ Panel *HandleInput(Screen *screen, GameData *data, Panel *activePanel, char inpu
 }
 
 void Save(Screen *screen, GameData *data, Panel *activePanel){
+  
+  if(screen == NULL || data == NULL || activePanel == NULL)
+    return;
 
+  char **file = malloc(sizeof(char*) * 2);
+  file[0] = CreateCopyString(activePanel->id); 
+  file[1] = NULL; 
+
+  Item *current = data->firstItem;
+  while(current != NULL){
+    if(current->owned){
+      file[1] = Append(file[1], current->id);
+
+      if(current->next != NULL)
+        file[1] = Append(file[1], " ");
+    }
+
+    current = current->next;
+  }
+
+  WriteAllLines(data->saveFile, file, 2);
+  FreeStringArray(file, 2);
 }
 
 Panel *EvaluateChoice(Screen *screen, GameData *data, Panel *activePanel, int choiceIndex){
@@ -66,10 +87,10 @@ Panel *EvaluateChoice(Screen *screen, GameData *data, Panel *activePanel, int ch
   if(activePanel == NULL || data == NULL)
     return activePanel;
 
-  if(activePanel->choices[choiceIndex]->type == 'P')
+  if(activePanel->choices[choiceIndex]->type == 'P' && choiceIndex < activePanel->choiceCount)
     activePanel = ActivateNewPanel(activePanel, data->firstPanel, activePanel->choices[choiceIndex]->contentID);
 
-  else if(activePanel->choices[choiceIndex]->type == 'I')
+  else if(activePanel->choices[choiceIndex]->type == 'I' && choiceIndex < activePanel->choiceCount)
     PickupItem(screen, data->firstItem, activePanel->choices[choiceIndex]->contentID);
 
   return activePanel;

@@ -2,6 +2,8 @@
 #define GAMEDATA_H
 
 #include <string.h>
+#include "debugmalloc.h"
+#include "filehandler.h"
 #include "gameData.h"
 #include "ioHandle.h"
 #include "panel.h"

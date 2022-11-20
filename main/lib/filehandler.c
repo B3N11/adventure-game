@@ -11,6 +11,23 @@ bool FileExists(char *file){
   return access(file, F_OK) == 0; 
 }
 
+void WriteAllLines(char *path, char **array, int length){
+
+  if(path == NULL || array == NULL || length == 0)
+    return;
+
+  FILE *fp = fopen(path, "w");
+
+  if(fp == NULL)
+    return;
+
+  for(int i = 0; i < length; i++)
+    if(array[i] != NULL)
+      fprintf(fp, "%s\n", array[i]);
+
+  fclose(fp);
+}
+
 //Reads all lines of a file and stores them in a string array
 //Returns: a string array (char **) with each element containing a line of the file
 //         returns NULL if the file can't be opened
@@ -18,6 +35,9 @@ char **ReadAllLines(const char *path, int *length){
 
   //Read the content of the file
   char *lines = ReadAllLinesStr(path);
+
+  if(lines == NULL)
+    return NULL;
 
   //Split the read lines
   char **result = Split(lines, '\n', length);
@@ -52,11 +72,22 @@ char *ReadAllLinesStr(const char *path){
   while(fgets(buffer, sizeof(buffer), fp) != NULL)
     result = Append(result, buffer);
 
-  //Crop down the empty line from the end of the file
-  char* crop = Crop(result, 0, 1);
-  free(result);
+  //If empty file
+  if(strlen(result) == 0){
+    free(result);
+    fclose(fp);
+    return NULL;
+  }
 
+  //Crop down the empty line from the end of the file
+  if(result[strlen(result) - 1] == '\n'){
+    char* crop = Crop(result, 0, 1);
+    free(result);
+    fclose(fp);
+    return crop;
+  }
+  
   //Close file
   fclose(fp);
-  return crop;
+  return result;
 }

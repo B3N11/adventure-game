@@ -9,6 +9,7 @@ typedef struct GameData{
 
   char *title;
   char *creator;
+  char *saveFile;
   Panel *firstPanel;
   Item *firstItem;
 }GameData;

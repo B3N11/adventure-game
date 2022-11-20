@@ -17,11 +17,12 @@ bool Run(int argc, char **args){
 
   char *result;
   //Handle arguments and initiate program data
-  //result = HandleStartingArgs(argc, args);
-  //if(result != NULL)
-  //  ExitError(result);
+  /*result = HandleStartingArgs(argc, args);*/
+  /*if(result != NULL)*/
+    /*ExitError(result);*/
   GameData *data =  HandleRootfile(args[1]);
-  result = HandleSaveFile(args[2], data);
+  /*result = HandleSaveFile(args[2], data);*/
+  result = HandleSaveFile("root/save.txt", data);
   Screen *screen = CreateScreen();
 
   //Create title screen and wait for input to progress
@@ -100,8 +101,11 @@ GameData *HandleRootfile(char *path){
 
 char *HandleSaveFile(char *path, GameData *data){
 
-  if(path == NULL)
+  if(data == NULL || path == NULL)
     return "Parameter cannot be NULL";
+
+  //Save file path for later access
+  data->saveFile = CreateCopyString(path);
 
   int length;
   char **file = ReadAllLines(path, &length);
@@ -109,12 +113,19 @@ char *HandleSaveFile(char *path, GameData *data){
   if(file == NULL)
     return "Problem opening the save file.";
 
-  if(length <= 1){
+  if(length == 0){
     FreeStringArray(file, length);
-    return "Invalid save file format.";
+    return NULL;
   }
 
+  //Set the active panel to the saved one
   SetActivePanel(data->firstPanel, file[0]);
+
+  //If there are no saved items, return
+  if(length == 1){
+    FreeStringArray(file, length);
+    return NULL;
+  }
 
   int splitLength;
   char **split = Split(file[1], ' ', &splitLength);
