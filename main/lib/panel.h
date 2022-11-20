@@ -32,7 +32,7 @@ void FreePanelList(Panel *first);
 static Choice *CreateChoice(char *text);
 static void FreeChoice(Choice *choice);
 Panel *GetPanel(Panel *first, char *id);
-void SetActivePanel(Panel *first, char *id);
+Panel *SetActivePanel(Panel *first, char *id);
 Panel *GetStartPanel(Panel *first);
 Panel *GetActivePanel(Panel *first);
 

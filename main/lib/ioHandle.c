@@ -149,9 +149,19 @@ void DisplayPanel(Panel *panel, Screen *screen){
 	if(panel == NULL)
 		return;
 
+	ClearWindow(screen->topWindow);
+	ClearWindow(screen->bottomWindow);
+
 	DisplayText(panel->text, screen->topWindow);
 
+	for(int i = 0; i < panel->choiceCount; i++){
 
+		econio_gotoxy(2, screen->split + 1 + i);
+		printf("[%d] ", i);
+		puts(panel->choices[i]->text);
+	}
+	
+	ResetCursor();
 }
 
 void ResetCursor(){

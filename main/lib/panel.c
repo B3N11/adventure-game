@@ -44,17 +44,19 @@ Panel *GetActivePanel(Panel *first){
   return NULL;
 }
 
-void SetActivePanel(Panel *first, char *id){
+Panel *SetActivePanel(Panel *first, char *id){
 
   if(first == NULL || id == NULL)
-    return;
+    return NULL;
 
   Panel *result = GetPanel(first, id);
 
   if(result == NULL)
-    return;
+    return NULL;
 
   result->active = true;
+
+  return result;
 }
 
 Panel *GetPanel(Panel *first, char *id){
