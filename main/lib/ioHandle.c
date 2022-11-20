@@ -144,10 +144,14 @@ int CharsUntilNextSpace(const char *text, int index){
 	return result;
 }
 
-void DisplayPanel(Panel *panel){
+void DisplayPanel(Panel *panel, Screen *screen){
 
 	if(panel == NULL)
 		return;
+
+	DisplayText(panel->text, screen->topWindow);
+
+
 }
 
 void ResetCursor(){

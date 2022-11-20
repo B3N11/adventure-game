@@ -20,4 +20,6 @@ void RunGame(Screen *screen, GameData *data){
   //If there is no starting panel, return completely
   if(activePanel == NULL)
     return;
+
+  DisplayPanel(activePanel, screen); 
 }

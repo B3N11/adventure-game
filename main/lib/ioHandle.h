@@ -29,7 +29,7 @@ void ClearWindow(Window window);
 void DrawScreen(Screen *screen, int background, int foreground);
 char GetPressedKey();
 void DrawTitleScreen(Screen *screen, GameData *data, int background, int foreground);
-void DisplayPanel(Panel *panel);
+void DisplayPanel(Panel *panel, Screen *screen);
 void ResetCursor();
 
 #endif
