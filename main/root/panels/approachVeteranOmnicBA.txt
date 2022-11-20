@@ -1,1 +1,4 @@
 approachVeteranOmnicBA normal
+You talk to him. He gives you a neon lamp.
+I neonLamp "Take the offering"
+P doNothingBA "Do nothing"

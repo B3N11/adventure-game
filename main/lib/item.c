@@ -18,7 +18,7 @@ Item *GetItem(Item *first, char *id){
     return NULL;
 
   Item *result = first;
-  while(result->next != NULL){
+  while(result != NULL){
     if(strcmp(result->id, id) == 0)
       return result;
 
@@ -28,37 +28,35 @@ Item *GetItem(Item *first, char *id){
   return NULL;
 }
 
-void SetItemOwnership(Item *first, char *id){
+Item *SetItemOwnership(Item *first, char *id){
 
   if(first == NULL || id == NULL)
-    return;
+    return NULL;
 
   Item *result = GetItem(first, id);
 
   if(result == NULL)
-    return;
+    return NULL;
 
   result->owned = true;
+
+  return result;
 }
 
 Item *CreateItem(char *text){
 
-  int splitLength;
-  char **split = Split(text, ' ', &splitLength);
-
-  //If there was less then 2 values in the line skip that line
-  if(splitLength <= 1){
-    FreeStringArray(split, splitLength);
+  if(text == NULL)
     return NULL;
-  }
+
+  int idLenght = CharsUntilNextSpace(text, 0);
+  int nameLength = strlen(text) - idLenght - 1;
 
   Item *result = (Item*) malloc(sizeof(Item));
-  result->id = CreateCopyString(split[0]);
-  result->name = CreateCopyString(split[1]);
+  result->id = Crop(text, 0, nameLength + 1);
+  result->name = Crop(text, idLenght + 2, 1);
   result->next = NULL;
   result->owned = false;
 
-  FreeStringArray(split, splitLength);
   return result;
 }
 

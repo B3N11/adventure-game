@@ -30,6 +30,7 @@ bool Run(int argc, char **args){
 
   //Run game
   RunGame(screen, data);
+  ClearScreen();
   
   //Release resources
   FreeGameData(data);

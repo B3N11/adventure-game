@@ -3,6 +3,7 @@
 
 #include "econio.h"
 #include "gameData.h"
+#include "ext_string.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -23,13 +24,14 @@ typedef struct Screen{
     Window bottomWindow;
 }Screen;
 
-int CharsUntilNextSpace(const char *text, int index);
 void DisplayText(const char *text, Window window);
 void ClearWindow(Window window);
 void DrawScreen(Screen *screen, int background, int foreground);
 char GetPressedKey();
 void DrawTitleScreen(Screen *screen, GameData *data, int background, int foreground);
 void DisplayPanel(Panel *panel, Screen *screen);
+void DisplayItem(Screen *screen, Item *item);
+void ClearScreen();
 void ResetCursor();
 
 #endif

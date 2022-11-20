@@ -3,4 +3,5 @@ Beni
 P /home/brokkr/uni/sub/prog/nhf/advGame/main/root/panels/start.txt
 P /home/brokkr/uni/sub/prog/nhf/advGame/main/root/panels/smokeCigaretteBackAlley.txt
 P /home/brokkr/uni/sub/prog/nhf/advGame/main/root/panels/doNothingBackAlley.txt
+P /home/brokkr/uni/sub/prog/nhf/advGame/main/root/panels/approachVeteranOmnicBA.txt
 I /home/brokkr/uni/sub/prog/nhf/advGame/main/root/items/items.txt

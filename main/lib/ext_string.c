@@ -1,5 +1,21 @@
 #include "ext_string.h"
 
+//Counts the characters until next space
+int CharsUntilNextSpace(const char *text, int index){
+
+	if(text == NULL || index >= strlen(text))
+		return -1;
+
+	int result = 0;
+	for(int i = index; text[i] != '\0'; i++){
+		if(text[i] == ' ')
+			return result;
+		result++;
+	}
+
+	return result;
+}
+
 //Creates a new string and copies the data from the src string to the new one. Src must be null-terminated
 //Returns: a string (char*) with the copied data
 //         returns NULL if src is NULL or its length is 0 (excluding null-terminator)

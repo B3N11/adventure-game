@@ -7,8 +7,10 @@
 #include "panel.h"
 
 void RunGame(Screen *screen, GameData *data);
-Panel *HandleInput(GameData *data, Panel *activePanel, char input);
-Panel *EvaluateChoice(GameData *data, Panel *activePanel, int choiceIndex);
+Panel *HandleInput(Screen *screen, GameData *data, Panel *activePanel, char input);
+Panel *EvaluateChoice(Screen *screen, GameData *data, Panel *activePanel, int choiceIndex);
 Panel *ActivateNewPanel(Panel *activePanel, Panel *first, char *id);
+void PickupItem(Screen *screen, Item *first, char *id);
+void Save(Screen *screen, GameData *data, Panel *activePanel);
 
 #endif

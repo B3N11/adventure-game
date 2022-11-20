@@ -110,7 +110,7 @@ void DisplayText(const char *text, Window window){
 			if(text[index] == ' '){
 
 				//Calculate how long the next word is and how far is the end of the line
-				int untilSpace = CharsUntilNextSpace(text, index);
+				int untilSpace = CharsUntilNextSpace(text, index + 1);
 				int leftFromScreen = horizontalMove - j;
 
 				//If the word is longer than the space left until the end of line, we break out
@@ -129,24 +129,9 @@ void DisplayText(const char *text, Window window){
 	ResetCursor();
 }
 
-int CharsUntilNextSpace(const char *text, int index){
-
-	if(text == NULL || index >= strlen(text))
-		return -1;
-
-	int result = 0;
-	for(int i = index + 1; text[i] != '\0'; i++){
-		if(text[i] == ' ')
-			return result;
-		result++;
-	}
-
-	return result;
-}
-
 void DisplayPanel(Panel *panel, Screen *screen){
 
-	if(panel == NULL)
+	if(screen == NULL || panel == NULL)
 		return;
 
 	ClearWindow(screen->topWindow);
@@ -162,6 +147,36 @@ void DisplayPanel(Panel *panel, Screen *screen){
 	}
 	
 	ResetCursor();
+}
+
+void DisplayItem(Screen *screen, Item *item){
+
+	if(screen == NULL || item == NULL)
+		return;
+
+	ClearWindow(screen->topWindow);
+	ClearWindow(screen->bottomWindow);
+
+	int titlePos = (screen->width - 29) / 2;
+	int verticalCenter = (screen->topWindow.maxY - screen->topWindow.minY) / 2;
+	econio_gotoxy(titlePos, verticalCenter);
+	puts("You have picked up an item:");
+
+	int namePos = (screen->width - strlen(item->name) - 2) / 2;
+	econio_gotoxy(namePos, verticalCenter + 1);
+	puts(item->name);
+
+	int promptPos = (screen->width - 16) / 2;
+	verticalCenter = (((screen->bottomWindow.maxY - screen->bottomWindow.minY) + 1) / 2) + screen->split;
+	econio_gotoxy(promptPos, verticalCenter);
+	puts("Press any key!");
+
+	ResetCursor();
+}
+
+void ClearScreen(){
+	econio_clrscr();
+	econio_gotoxy(0, 0);
 }
 
 void ResetCursor(){
