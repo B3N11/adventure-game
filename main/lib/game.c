@@ -71,6 +71,7 @@ Panel *ActivateNewPanel(Panel *activePanel, Panel *first, char *id){
 
   activePanel->active = false;
   activePanel = SetActivePanel(first, id);
+  activePanel->active = true;
 
   return activePanel;
 }

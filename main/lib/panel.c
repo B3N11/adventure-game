@@ -18,7 +18,7 @@ Panel *GetStartPanel(Panel *first){
     return NULL;
 
   Panel *result = first;
-  while(result->next != NULL){
+  while(result != NULL){
     if(strcmp(result->type, "start") == 0)
       return result;
 
@@ -34,7 +34,7 @@ Panel *GetActivePanel(Panel *first){
     return NULL;
 
   Panel *result = first;
-  while(result->next != NULL){
+  while(result != NULL){
     if(result->active)
       return result;
 
@@ -65,7 +65,7 @@ Panel *GetPanel(Panel *first, char *id){
     return NULL;
 
   Panel *result = first;
-  while(result->next != NULL){
+  while(result != NULL){
     
     if(strcmp(result->id, id) == 0)
       return result;
