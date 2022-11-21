@@ -6,6 +6,7 @@
 #include "ext_string.h"
 #include <string.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 typedef struct Window{
 
@@ -29,8 +30,10 @@ void ClearWindow(Window window);
 void DrawScreen(Screen *screen, int background, int foreground);
 char GetPressedKey();
 void DrawTitleScreen(Screen *screen, GameData *data, int background, int foreground);
-void DisplayPanel(Panel *panel, Screen *screen);
+void DisplayPanel(Panel *panel, Screen *screen, bool endpanel);
 void DisplayItem(Screen *screen, Item *item);
+void DisplayPressAnyKey(Screen *screen);
+void DisplayOwnedItems(Screen *screen, Item *firstItem);
 void ClearScreen();
 void ResetCursor();
 

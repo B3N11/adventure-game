@@ -15,14 +15,14 @@ int main(int argc, char **args){
 //Run the main functions of the program
 bool Run(int argc, char **args){
 
-  char *result;
   //Handle arguments and initiate program data
-  /*result = HandleStartingArgs(argc, args);*/
-  /*if(result != NULL)*/
-    /*ExitError(result);*/
+  char *result = HandleStartingArgs(argc, args);
+  if(result != NULL)
+    ExitError(result);
+
   GameData *data =  HandleRootfile(args[1]);
-  /*result = HandleSaveFile(args[2], data);*/
-  result = HandleSaveFile("root/save.txt", data);
+  result = HandleSaveFile(args[2], data);
+  /*result = HandleSaveFile("root/save.txt", data);*/
   Screen *screen = CreateScreen();
 
   //Create title screen and wait for input to progress
@@ -49,9 +49,6 @@ char *HandleStartingArgs(int argc, char **args){
   if(!FileExists(args[1]))
     return "The rootfile does not exist.";
 
-  if(!FileExists(args[2]))
-    return "The character file does not exist.";
-
   return NULL;
 }
 
@@ -59,13 +56,13 @@ char *HandleStartingArgs(int argc, char **args){
 GameData *HandleRootfile(char *path){
 
   //Check for parameter validity
-  /*if(path == NULL)*/
-    /*ExitError("Parameter can't be NULL. (HandleRootfile(char *path))");*/
+  if(path == NULL)
+    ExitError("Parameter can't be NULL. (HandleRootfile(char *path))");
 
   //Read the rootfile
   int rootfileLength;
-  //char **rootfile = ReadAllLines(path, &rootfileLength);
-  char **rootfile = ReadAllLines("root/root.txt", &rootfileLength);
+  char **rootfile = ReadAllLines(path, &rootfileLength);
+  /*char **rootfile = ReadAllLines("root/root.txt", &rootfileLength);*/
 
   //Check if file structure is valid
   if(rootfile == NULL || rootfileLength <= 2){
@@ -85,6 +82,7 @@ GameData *HandleRootfile(char *path){
     char *line = rootfile[i];
     char *path = Crop(line, 2, 0);
     
+    //If one of the files listed in rootfile doesnt exist, quit
     if(!FileExists(path)){
       FreeStringArray(rootfile, rootfileLength);
       FreeGameData(result);

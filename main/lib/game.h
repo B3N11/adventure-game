@@ -14,5 +14,6 @@ Panel *EvaluateChoice(Screen *screen, GameData *data, Panel *activePanel, int ch
 Panel *ActivateNewPanel(Panel *activePanel, Panel *first, char *id);
 void PickupItem(Screen *screen, Item *first, char *id);
 void Save(Screen *screen, GameData *data, Panel *activePanel);
+void EndGame(Screen *screen, GameData *data, Panel *activePanel);
 
 #endif

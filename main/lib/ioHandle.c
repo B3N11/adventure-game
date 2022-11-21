@@ -18,10 +18,7 @@ void DrawTitleScreen(Screen *screen, GameData *data, int background, int foregro
 	econio_gotoxy(creatorPos, verticalCenter + 1);
 	puts(data->creator);
 
-	int promptPos = (screen->width - 17) / 2;
-	int botVerticalCenter = (screen->bottomWindow.maxY - screen->bottomWindow.minY) / 2 + 1;
-	econio_gotoxy(promptPos,screen->split + botVerticalCenter);
-	puts("Press any key!");
+	DisplayPressAnyKey(screen);
 
 	ResetCursor();
 }
@@ -129,7 +126,7 @@ void DisplayText(const char *text, Window window){
 	ResetCursor();
 }
 
-void DisplayPanel(Panel *panel, Screen *screen){
+void DisplayPanel(Panel *panel, Screen *screen, bool endpanel){
 
 	if(screen == NULL || panel == NULL)
 		return;
@@ -139,14 +136,56 @@ void DisplayPanel(Panel *panel, Screen *screen){
 
 	DisplayText(panel->text, screen->topWindow);
 
-	for(int i = 0; i < panel->choiceCount; i++){
+	if(endpanel)
+		DisplayPressAnyKey(screen);
+	
+	else{
+		for(int i = 0; i < panel->choiceCount; i++){
 
-		econio_gotoxy(2, screen->split + 1 + i);
-		printf("[%d] ", i);
-		puts(panel->choices[i]->text);
+			econio_gotoxy(2, screen->split + 1 + i);
+			printf("[%d] ", i);
+			puts(panel->choices[i]->text);
+		}
 	}
 	
 	ResetCursor();
+}
+
+void DisplayOwnedItems(Screen *screen, Item *firstItem){
+
+	ClearWindow(screen->topWindow);
+	ClearWindow(screen->bottomWindow);
+
+
+	int titelPos = (screen->width - 31) / 2;
+	econio_gotoxy(titelPos, 2);
+	puts("YOU HAVE GADERED THESE ITEMS:");
+
+	int offset = 0;
+	Item *current = firstItem;
+	while(current != NULL){
+		if(!current->owned){
+			current = current->next;
+			continue;
+		}
+
+		int currentPos = (screen->width - strlen(current->name) - 2) / 2;
+		econio_gotoxy(currentPos, 4 + offset);
+		puts(current->name);
+		offset++;
+		current = current->next;
+	}
+
+	DisplayPressAnyKey(screen);
+}
+
+void DisplayPressAnyKey(Screen *screen){
+
+	int promptPos = (screen->width - 16) / 2;
+	int verticalCenter = (((screen->bottomWindow.maxY - screen->bottomWindow.minY) + 1) / 2) + screen->split;
+	econio_gotoxy(promptPos, verticalCenter);
+	puts("Press any key!");
+
 }
 
 void DisplayItem(Screen *screen, Item *item){
@@ -160,17 +199,14 @@ void DisplayItem(Screen *screen, Item *item){
 	int titlePos = (screen->width - 29) / 2;
 	int verticalCenter = (screen->topWindow.maxY - screen->topWindow.minY) / 2;
 	econio_gotoxy(titlePos, verticalCenter);
-	puts("You have picked up an item:");
+	puts("YOU HAVE PICKED UP AND ITEM:");
 
 	int namePos = (screen->width - strlen(item->name) - 2) / 2;
 	econio_gotoxy(namePos, verticalCenter + 1);
 	puts(item->name);
 
-	int promptPos = (screen->width - 16) / 2;
-	verticalCenter = (((screen->bottomWindow.maxY - screen->bottomWindow.minY) + 1) / 2) + screen->split;
-	econio_gotoxy(promptPos, verticalCenter);
-	puts("Press any key!");
-
+	DisplayPressAnyKey(screen);
+	
 	ResetCursor();
 }
 

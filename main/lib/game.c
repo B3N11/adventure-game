@@ -21,7 +21,7 @@ void RunGame(Screen *screen, GameData *data){
   if(activePanel == NULL)
     return;
 
-  DisplayPanel(activePanel, screen); 
+  DisplayPanel(activePanel, screen, false); 
   char input = GetPressedKey();
 
   //Run the game while player doesn't quit
@@ -32,10 +32,27 @@ void RunGame(Screen *screen, GameData *data){
     if(activePanel == NULL)
       return;
 
-    DisplayPanel(activePanel, screen);
+    //If the panel is an end panel, end the game
+    if(strcmp(activePanel->type, "end") == 0){
+      EndGame(screen, data, activePanel);
+      return;
+    }
 
+    //If the current panel is normal or starting panel, progress with the game
+    DisplayPanel(activePanel, screen, false);
     input = GetPressedKey();
   }
+}
+
+void EndGame(Screen *screen, GameData *data, Panel *activePanel){
+
+  if(screen == NULL || data == NULL || activePanel == NULL)
+    return;
+
+  DisplayPanel(activePanel, screen, true);
+  GetPressedKey();
+  DisplayOwnedItems(screen, data->firstItem);
+  GetPressedKey();
 }
 
 Panel *HandleInput(Screen *screen, GameData *data, Panel *activePanel, char input){
@@ -47,7 +64,7 @@ Panel *HandleInput(Screen *screen, GameData *data, Panel *activePanel, char inpu
   int normalInput = input - 48;
 
   //Chek if input is 0-9. That means, one of the choices were pressed
-  if(normalInput >= 0 && normalInput <= 9)
+  if(normalInput >= 0 && normalInput < activePanel->choiceCount)
     activePanel = EvaluateChoice(screen, data, activePanel, normalInput);
 
   //If the input is S, save the current state

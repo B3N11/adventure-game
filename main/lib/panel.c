@@ -92,7 +92,7 @@ static Panel *CreatePanel(char *path){
   int fileLength;
   char **file = ReadAllLines(path, &fileLength);
 
-  if(fileLength <= 2 || file == NULL){
+  if(fileLength < 2 || file == NULL){
     FreeStringArray(file, fileLength);
     return NULL;
   }
