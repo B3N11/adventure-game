@@ -151,14 +151,18 @@ void DisplayPanel(Panel *panel, Screen *screen, bool endpanel){
 	ResetCursor();
 }
 
-void DisplayOwnedItems(Screen *screen, Item *firstItem){
+void DisplayEndgame(Screen *screen, Item *firstItem){
 
 	ClearWindow(screen->topWindow);
 	ClearWindow(screen->bottomWindow);
 
-
-	int titelPos = (screen->width - 31) / 2;
+	int titelPos = (screen->width -11) / 2;
 	econio_gotoxy(titelPos, 2);
+	puts("GAME OVER");
+
+
+	titelPos = (screen->width - 31) / 2;
+	econio_gotoxy(titelPos, 3);
 	puts("YOU HAVE GADERED THESE ITEMS:");
 
 	int offset = 0;

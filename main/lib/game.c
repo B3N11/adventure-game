@@ -51,7 +51,7 @@ void EndGame(Screen *screen, GameData *data, Panel *activePanel){
 
   DisplayPanel(activePanel, screen, true);
   GetPressedKey();
-  DisplayOwnedItems(screen, data->firstItem);
+  DisplayEndgame(screen, data->firstItem);
   GetPressedKey();
 }
 

@@ -33,7 +33,7 @@ void DrawTitleScreen(Screen *screen, GameData *data, int background, int foregro
 void DisplayPanel(Panel *panel, Screen *screen, bool endpanel);
 void DisplayItem(Screen *screen, Item *item);
 void DisplayPressAnyKey(Screen *screen);
-void DisplayOwnedItems(Screen *screen, Item *firstItem);
+void DisplayEndgame(Screen *screen, Item *firstItem);
 void ClearScreen();
 void ResetCursor();
 
