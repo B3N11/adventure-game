@@ -84,6 +84,7 @@ void DisplayText(const char *text, Window window){
 
 	//Calculate how many steps it takes to walk trought the whole window
 	int index = 0;
+	int offset = 0;
 	int verticalMove = window.maxY - window.minY;
 	int horizontalMove = window.maxX - window.minX;
 	
@@ -92,6 +93,7 @@ void DisplayText(const char *text, Window window){
 		
 		//Go to new line
 		econio_gotoxy(window.minX, window.minY + i);
+		offset = 0;
 
 		//Go trough the line and display every character
 		for(int j = 0; j < horizontalMove && text[index] != '\0'; j++){
@@ -111,7 +113,7 @@ void DisplayText(const char *text, Window window){
 				int leftFromScreen = horizontalMove - j;
 
 				//If the word is longer than the space left until the end of line, we break out
-				if(untilSpace >= leftFromScreen){
+				if((untilSpace + offset) >= leftFromScreen){
 					index++;
 					break;
 				}
@@ -121,6 +123,13 @@ void DisplayText(const char *text, Window window){
 			if((index == 0 && text[index] == '\\' && text[index + 1] == 'n') || (index > 0 && text[index - 1] != '\\' && text[index] == '\\' && text[index + 1] == 'n')){
 				index += 2;
 				break;
+			}
+
+			//Insert tab when operator reached
+			if((index == 0 && text[index] == '\\' && text[index + 1] == 't') || (index > 0 && text[index - 1] != '\\' && text[index] == '\\' && text[index + 1] == 't')){
+				printf("    ");
+				offset += 4;
+				index += 2;
 			}
 
 			//If everything is normal, we display the character
