@@ -1,2 +1,3 @@
 greetOmnic2BA normal
-"Not much of a talker, are you?" - says the robot with a little disappointment in his voice. "My name is Banshee 47."
+\t"Not much of a talker, are you?" - says the robot with a little disappointment in his voice. - "My name is Banshee 47."\n\t"Banshee you say?" - you know it can't be his real name, omnics developed their own personality, they started naming themselves after a while.\n\t"And what's your real name?"\n\t"I don't have one, sir! Banshee was my callsign when I served in the omnic wars as a pilot."\n\nFigures...
+P smth "That's very interesting"
