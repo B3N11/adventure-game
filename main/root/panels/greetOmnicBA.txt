@@ -1,0 +1,3 @@
+greetOmnicBA normal
+"Huh, you might be right there, sir!" - answers quietly - "The sunlight doesn't really reach here. That's why I always greet people with 'evenings'. Not really day, but neither night." It's rather strange thinking for an omnic, but who knows...
+P greetOmnic2BA ""What can I do for you?""

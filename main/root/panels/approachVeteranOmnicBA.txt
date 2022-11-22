@@ -1,4 +1,4 @@
 approachVeteranOmnicBA normal
-You talk to him. He gives you a neon lamp.
-I neonLamp "Take the offering"
-P doNothingBA "Do nothing"
+The robot searches for something with his eye on you as you are walking towards him. He struggles to stand up, but he manages to do so and shakes your hand. He may be an omnic, but he knows ethics well. "Good evening sir!" - his audio panel must be damaged, his words are messy and a little static noise can be heard when he is not speaking.
+P greetOmnicBA ""Is it? Can't tell if it's night or morning...""
+P greetOmnic2BA ""Back at ya. What's the matter?""

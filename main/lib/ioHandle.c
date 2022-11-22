@@ -117,6 +117,12 @@ void DisplayText(const char *text, Window window){
 				}
 			}
 
+			//Break line when operator reached
+			if((index == 0 && text[index] == '\\' && text[index + 1] == 'n') || (index > 0 && text[index - 1] != '\\' && text[index] == '\\' && text[index + 1] == 'n')){
+				index += 2;
+				break;
+			}
+
 			//If everything is normal, we display the character
 			printf("%c", text[index]);
 			index++;
