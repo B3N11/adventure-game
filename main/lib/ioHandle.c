@@ -56,6 +56,11 @@ void DrawScreen(Screen *screen, int background, int foreground){
 		}
 	}
 
+	econio_gotoxy(2, screen->split);
+	econio_textbackground(foreground);
+	econio_textcolor(background);
+	puts("[q] Quit [s] Save");
+
 	econio_textbackground(background);
 	econio_textcolor(foreground);
 	ResetCursor();
