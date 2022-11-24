@@ -12,6 +12,23 @@ Item *GetLastItem(Item *first){
   return result;
 }
 
+bool ItemOwned(Item *first, char *id){
+  
+  if(first == NULL || id == NULL)
+    return false;
+
+  Item* current = first;
+  while(current != NULL){
+
+    if(strcmp(current->id, id) == 0 && current->owned)
+      return true;
+
+    current = current->next;
+  }
+
+  return false;
+}
+
 Item *GetItem(Item *first, char *id){
 
   if(first == NULL || id == NULL)

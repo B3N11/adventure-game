@@ -146,7 +146,7 @@ void DisplayText(const char *text, Window window){
 	ResetCursor();
 }
 
-void DisplayPanel(Panel *panel, Screen *screen, bool endpanel){
+void DisplayPanel(Panel *panel, Screen *screen, Item *firstItem, bool endpanel){
 
 	if(screen == NULL || panel == NULL)
 		return;
@@ -162,6 +162,9 @@ void DisplayPanel(Panel *panel, Screen *screen, bool endpanel){
 	else{
 		for(int i = 0; i < panel->choiceCount; i++){
 
+			if(panel->choices[i]->type == 'I' && ItemOwned(firstItem, panel->choices[i]->contentID))
+				continue;
+
 			econio_gotoxy(2, screen->split + 1 + i);
 			printf("[%d] ", i);
 			puts(panel->choices[i]->text);
@@ -176,14 +179,13 @@ void DisplayEndgame(Screen *screen, Item *firstItem){
 	ClearWindow(screen->topWindow);
 	ClearWindow(screen->bottomWindow);
 
-	int titelPos = (screen->width -11) / 2;
+	int titelPos = (screen->width -19) / 2;
 	econio_gotoxy(titelPos, 2);
-	puts("GAME OVER");
-
+	puts("----GAME OVER----");
 
 	titelPos = (screen->width - 31) / 2;
 	econio_gotoxy(titelPos, 3);
-	puts("YOU HAVE GADERED THESE ITEMS:");
+	puts("YOU HAVE COLLECTED THESE ITEMS:");
 
 	int offset = 0;
 	Item *current = firstItem;

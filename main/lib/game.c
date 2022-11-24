@@ -21,7 +21,8 @@ void RunGame(Screen *screen, GameData *data){
   if(activePanel == NULL)
     return;
 
-  DisplayPanel(activePanel, screen, false); 
+  bool endpanel = (strcmp(activePanel->type, "end") == 0);
+  DisplayPanel(activePanel, screen, data->firstItem, endpanel); 
   char input = GetPressedKey();
 
   //Run the game while player doesn't quit
@@ -39,7 +40,7 @@ void RunGame(Screen *screen, GameData *data){
     }
 
     //If the current panel is normal or starting panel, progress with the game
-    DisplayPanel(activePanel, screen, false);
+    DisplayPanel(activePanel, screen, data->firstItem, false);
     input = GetPressedKey();
   }
 }
@@ -49,7 +50,7 @@ void EndGame(Screen *screen, GameData *data, Panel *activePanel){
   if(screen == NULL || data == NULL || activePanel == NULL)
     return;
 
-  DisplayPanel(activePanel, screen, true);
+  DisplayPanel(activePanel, screen, data->firstItem, true);
   GetPressedKey();
   DisplayEndgame(screen, data->firstItem);
   GetPressedKey();
@@ -115,7 +116,7 @@ Panel *EvaluateChoice(Screen *screen, GameData *data, Panel *activePanel, int ch
 
 void PickupItem(Screen *screen, Item *first, char *id){
 
-  if(screen == NULL || id == NULL)
+  if(screen == NULL || id == NULL || first == NULL || ItemOwned(first, id))
     return;
 
   Item *item = SetItemOwnership(first, id);

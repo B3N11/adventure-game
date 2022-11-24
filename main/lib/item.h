@@ -21,5 +21,6 @@ static void FreeItem(Item *item);
 void FreeItemList(Item *first);
 Item *SetItemOwnership(Item *first, char *id);
 Item *GetItem(Item *first, char *id);
+bool ItemOwned(Item *first, char *id);
 
 #endif

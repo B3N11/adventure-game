@@ -16,13 +16,14 @@ int main(int argc, char **args){
 bool Run(int argc, char **args){
 
   //Handle arguments and initiate program data
-  char *result = HandleStartingArgs(argc, args);
-  if(result != NULL)
-    ExitError(result);
+  /*char *result = HandleStartingArgs(argc, args);*/
+  /*if(result != NULL)*/
+    /*ExitError(result);*/
 
-  GameData *data =  HandleRootfile(args[1]);
-  result = HandleSaveFile(args[2], data);
-  /*result = HandleSaveFile("root/save.txt", data);*/
+  /*GameData *data =  HandleRootfile(args[1]);*/
+  GameData *data =  HandleRootfile("root/root.txt");
+  /*result = HandleSaveFile(args[2], data);*/
+  HandleSaveFile("root/save.txt", data);
   Screen *screen = CreateScreen();
 
   //Create title screen and wait for input to progress
