@@ -5,22 +5,28 @@
 //         false if the file doesn't exist or the argument is NULL
 bool FileExists(char *file){
 
+  //Check for parameter validity
   if(file == NULL)
     return false;
 
   return access(file, F_OK) == 0; 
 }
 
+//Writes all elements of a string array into a file (each element into a new line)
 void WriteAllLines(char *path, char **array, int length){
 
+  //Check for parameter validity
   if(path == NULL || array == NULL || length == 0)
     return;
 
+  //Open file
   FILE *fp = fopen(path, "w");
 
+  //Check if the opening was successfull
   if(fp == NULL)
     return;
 
+  //If the element is not NULL, write it into the file
   for(int i = 0; i < length; i++)
     if(array[i] != NULL)
       fprintf(fp, "%s\n", array[i]);
@@ -36,6 +42,7 @@ char **ReadAllLines(const char *path, int *length){
   //Read the content of the file
   char *lines = ReadAllLinesStr(path);
 
+  //Check if the reading was successfull
   if(lines == NULL)
     return NULL;
 

@@ -2,55 +2,53 @@
 
 int main(int argc, char **args){
 
+  //Turn off output buffer
   setbuf(stdout, NULL);
 
   //Run the program
-  bool result = Run(argc, args);
+  Run(argc, args);
   
-  if(!result)
-    return -1;
   return 0;
 }
 
 //Run the main functions of the program
-bool Run(int argc, char **args){
+void Run(int argc, char **args){
 
   //Handle arguments and initiate program data
-  /*char *result = HandleStartingArgs(argc, args);*/
-  /*if(result != NULL)*/
-    /*ExitError(result);*/
+  HandleStartingArgs(argc, args);
 
-  /*GameData *data =  HandleRootfile(args[1]);*/
-  GameData *data =  HandleRootfile("root/root.txt");
-  /*result = HandleSaveFile(args[2], data);*/
-  HandleSaveFile("root/save.txt", data);
+  //Read game data (panels and items)
+  GameData *data =  HandleRootfile(args[1]);
+
+  //Read save file
+  HandleSaveFile(args[2], data);
+
+  //Create a new screen that determines the size
   Screen *screen = CreateScreen();
 
   //Create title screen and wait for input to progress
   DrawTitleScreen(screen, data, COL_DARKGRAY, COL_LIGHTYELLOW);
   GetPressedKey();
 
-  //Run game
+  //Run game loop
   RunGame(screen, data);
   ClearScreen();
   
   //Release resources
   FreeGameData(data);
   free(screen);
-
-  return true;
 }
 
 //Checks for the validity of the program starting arguments
-char *HandleStartingArgs(int argc, char **args){
+void HandleStartingArgs(int argc, char **args){
 
+  //If the user didn't provide enough arguments, close the program
   if(argc < 3)
-    return "Invalid parameters.\n      kalandjatek [rootfile] [characterfile]";
+    ExitError("Invalid parameters.\n      kalandjatek [rootfile] [characterfile]");
 
+  //If the rootfile doesn't exist, close the program
   if(!FileExists(args[1]))
-    return "The rootfile does not exist.";
-
-  return NULL;
+    ExitError("The rootfile does not exist.");
 }
 
 //Creates the basic data from the rootfile
@@ -58,12 +56,11 @@ GameData *HandleRootfile(char *path){
 
   //Check for parameter validity
   if(path == NULL)
-    ExitError("Parameter can't be NULL. (HandleRootfile(char *path))");
+   return NULL; 
 
   //Read the rootfile
   int rootfileLength;
   char **rootfile = ReadAllLines(path, &rootfileLength);
-  /*char **rootfile = ReadAllLines("root/root.txt", &rootfileLength);*/
 
   //Check if file structure is valid
   if(rootfile == NULL || rootfileLength <= 2){
@@ -78,8 +75,10 @@ GameData *HandleRootfile(char *path){
   result->firstItem = NULL;
   result->firstPanel = NULL;
 
+  //Iterate trough the files listed in the roofile
   for(int i = 2; i < rootfileLength; i++){
     
+    //Extract the raw filepath from the line
     char *line = rootfile[i];
     char *path = Crop(line, 2, 0);
     
@@ -90,8 +89,11 @@ GameData *HandleRootfile(char *path){
       ExitError("One of the files in rootfile are invalid.");
     }
 
+    //If the current file path points to an item file
     if(line[0] == 'I')
       result->firstItem = CreateItemsFromFile(result->firstItem, path); 
+    
+    //If the current file path points to a panel file
     if(line[0] == 'P')
       result->firstPanel = CreateAndAddPanel(result->firstPanel, path);
 
@@ -104,23 +106,30 @@ GameData *HandleRootfile(char *path){
   return result;
 }
 
-char *HandleSaveFile(char *path, GameData *data){
+//Reads the savefile and handles its content
+void HandleSaveFile(char *path, GameData *data){
 
+  //Check parameter validity
   if(data == NULL || path == NULL)
-    return "Parameter cannot be NULL";
+    return;
 
   //Save file path for later access
   data->saveFile = CreateCopyString(path);
 
+  //Read file
   int length;
   char **file = ReadAllLines(path, &length);
 
-  if(file == NULL)
-    return "Problem opening the save file.";
+  //It's not a problem if the file doesn't extist, we will create it when saving
+  if(file == NULL){
+    FreeStringArray(file, length);
+    return;
+  }
 
+  //If nothing is in the file yet, return 
   if(length == 0){
     FreeStringArray(file, length);
-    return NULL;
+    return;
   }
 
   //Set the active panel to the saved one
@@ -129,30 +138,36 @@ char *HandleSaveFile(char *path, GameData *data){
   //If there are no saved items, return
   if(length == 1){
     FreeStringArray(file, length);
-    return NULL;
+    return;
   }
 
+  //Split up the items
   int splitLength;
   char **split = Split(file[1], ' ', &splitLength);
 
+  //Set all the items in the savefile as owned
   for(int i = 0; i < splitLength; i++)
-    SetItemOwnership(data->firstItem, split[i]);
+    SetItemOwnership(data->firstItem, split[i], true);
 
+  //Free resources
   FreeStringArray(split, splitLength);
   FreeStringArray(file, length);
-
-  return NULL;
 }
 
 //Create new screen
 Screen *CreateScreen(){
 
+  //Allocate memory
   Screen *result = (Screen*) malloc(sizeof(Screen));
 
+  //Set size
   result->width = 70;
-  result->height = 30;
+  result->height = 32;
+
+  //Split is where the two windows are separated
   result->split = result->height - (result->height * 0.2);
 
+  //Set the parameters of the top and bottom windows
   result->topWindow = (Window){.minX=2, .minY=2, .maxX = result->width - 2, .maxY=result->split - 1};
   result->bottomWindow = (Window) {.minX=2, .minY=result->split+1, .maxX=result->width-2, .maxY=result->height-2};
 

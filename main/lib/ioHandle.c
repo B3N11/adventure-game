@@ -3,7 +3,8 @@
 //Displays the title screen for the game
 void DrawTitleScreen(Screen *screen, GameData *data, int background, int foreground){
 
-	if(screen == NULL)
+	//Check for parameter validity
+	if(screen == NULL || data == NULL)
 		return;
 
 	DrawScreen(screen, background, foreground);
@@ -12,8 +13,10 @@ void DrawTitleScreen(Screen *screen, GameData *data, int background, int foregro
 	int verticalCenter = (screen->topWindow.maxY - screen->topWindow.minY) / 2;
 	int titlePos = (screen->width - strlen(data->title) - 2) / 2;
 	econio_gotoxy(titlePos, verticalCenter);
-	puts(data->title);
+	for(int i = 0; data->title[i] != '\0'; i++)
+		printf("%c", toupper(data->title[i]));
 
+	//Display creator name
 	int creatorPos = (screen->width - strlen(data->creator) - 2) / 2;
 	econio_gotoxy(creatorPos, verticalCenter + 1);
 	puts(data->creator);
@@ -26,6 +29,7 @@ void DrawTitleScreen(Screen *screen, GameData *data, int background, int foregro
 //Waits until the user presses a key. Returns the pressed key.
 char GetPressedKey(){
 
+	//Switchs to raw mode, waits for input and returns to normal mode
 	econio_rawmode();
 	char result = (char) econio_getch();
 	econio_normalmode();
@@ -33,6 +37,7 @@ char GetPressedKey(){
 	return result;
 }
 
+//Displays the screen
 void DrawScreen(Screen *screen, int background, int foreground){
 
 	if(screen == NULL)

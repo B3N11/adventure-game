@@ -45,7 +45,7 @@ Item *GetItem(Item *first, char *id){
   return NULL;
 }
 
-Item *SetItemOwnership(Item *first, char *id){
+Item *SetItemOwnership(Item *first, char *id, bool owned){
 
   if(first == NULL || id == NULL)
     return NULL;
@@ -55,7 +55,7 @@ Item *SetItemOwnership(Item *first, char *id){
   if(result == NULL)
     return NULL;
 
-  result->owned = true;
+  result->owned = owned;
 
   return result;
 }

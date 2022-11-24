@@ -3,9 +3,11 @@
 //Counts the characters until next space
 int CharsUntilNextSpace(const char *text, int index){
 
+  //Check parameter validity
 	if(text == NULL || index >= strlen(text))
 		return -1;
 
+  //Iterate trough the text from the index until we find a space or \0
 	int result = 0;
 	for(int i = index; text[i] != '\0'; i++){
 		if(text[i] == ' ')
@@ -25,6 +27,7 @@ char *CreateCopyString(char *src){
   if(src == NULL)
     return NULL;
 
+  //Get the length of the source string
   int length = strlen(src) + 1;
 
   //Check if there is valid data to copy
@@ -41,9 +44,11 @@ char *CreateCopyString(char *src){
 //Frees an array of strings. Array cannot be NULL 
 void FreeStringArray(char **array, int length){
 
+  //Check for parameter validity
   if(array == NULL)
     return;
 
+  //Free every element if they are not NULL
   for(int i = 0; i < length; i++)
     if(array[i] != NULL)
       free(array[i]);
@@ -67,9 +72,11 @@ char *Crop(char *text, unsigned int front, unsigned int back){
   if((front + back) >= length)
     return text;
 
+  //Allocate memory
   int totalLength = length - (front + back) + 1;
   char *result = (char *) malloc(totalLength);
 
+  //Copy memory
   memcpy(result, text+front, (totalLength - 1));
   *(result + totalLength - 1) = '\0';
 
@@ -80,8 +87,13 @@ char *Crop(char *text, unsigned int front, unsigned int back){
 //Returns: an integer containing the result of the operation (number of occurences)
 int CountChar(const char *text, char find){
 
+  //Check for parameter validity
+  if(text == NULL)
+    return -1;
+
   int result = 0;
 
+  //Iterate trough the text
   for(int i = 0; text[i] != '\0'; i++)
     if(text[i] == find)
       result++;
@@ -103,7 +115,10 @@ char **Split(const char *text, char splitChar, int *arrayLength){
   int length = CountChar(text, splitChar) + 1;
   char **result = malloc(sizeof(char*) * length);
 
+  //Offset stores how far we are from the beginning of the text
   int offset = 0;
+
+  //Go trough the text
   for(int i = 0; i < length; i++){
 
     //Get the length of the substring without the splitChar
@@ -129,7 +144,7 @@ char **Split(const char *text, char splitChar, int *arrayLength){
   return result;
 }
 
-//Adds the given text to the given destination string
+//Adds the given text to the given destination string and returns a new string with those values. Destination string is freed
 //Returns: a pointer to the new string (given string is freed)
 //         returns NULL when either parameter is NULL
 //         the returned string will only be null-terminated if the given text is null terminated

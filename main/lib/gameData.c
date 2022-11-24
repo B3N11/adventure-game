@@ -1,5 +1,6 @@
 #include "gameData.h"
 
+//Creates new GameData instance with NULL-ed data
 GameData *CreateGameData(){
 
     GameData *result = (GameData*) malloc(sizeof(GameData));
@@ -12,6 +13,7 @@ GameData *CreateGameData(){
     return result;
 }
 
+//Frees a GameData instance
 void FreeGameData(GameData *data){
 
   if(data == NULL)

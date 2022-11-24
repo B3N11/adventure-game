@@ -19,7 +19,7 @@ Item *AddItemNode(Item *first, Item *node);
 Item *CreateItemsFromFile(Item *first_, char *filePath);
 static void FreeItem(Item *item);
 void FreeItemList(Item *first);
-Item *SetItemOwnership(Item *first, char *id);
+Item *SetItemOwnership(Item *first, char *id, bool owned);
 Item *GetItem(Item *first, char *id);
 bool ItemOwned(Item *first, char *id);
 
