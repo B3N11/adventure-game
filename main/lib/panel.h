@@ -12,10 +12,17 @@ typedef struct Choice{
     char *contentID;
 }Choice;
 
+typedef enum{
+
+    start,
+    end,
+    normal
+}PanelType;
+
 typedef struct Panel{
 
     char *id;
-    char *type;
+    PanelType type;
     char *text;
     bool active;
     int choiceCount;

@@ -43,10 +43,12 @@ void DrawScreen(Screen *screen, int background, int foreground){
 	if(screen == NULL)
 		return;
 
+	//Clear the screen and set the colors
 	econio_clrscr();
 	econio_textbackground(background);
 	econio_textcolor(foreground);
 	
+	//Go trought the edges of the screen
 	for(int i = 0; i < screen->height; i++){
 
 		econio_gotoxy(0, i);
@@ -61,21 +63,26 @@ void DrawScreen(Screen *screen, int background, int foreground){
 		}
 	}
 
+	//Display the default controls
 	econio_gotoxy(2, screen->split);
 	econio_textbackground(foreground);
 	econio_textcolor(background);
 	puts("[q] Quit [s] Save");
 
+	//Reset values
 	econio_textbackground(background);
 	econio_textcolor(foreground);
 	ResetCursor();
 }
 
+//Fills a window with spaces
 void ClearWindow(Window window){
 
+	//Get the dimensions of the window
 	int verticalMove = window.maxY - window.minY;
 	int horizontalMove = window.maxX - window.minX;
 
+	//Go trought the window
 	for(int i = 0; i < verticalMove; i++){
 		econio_gotoxy(window.minX, window.minY + i);
 		for(int j = 0; j < horizontalMove; j++)
@@ -151,19 +158,25 @@ void DisplayText(const char *text, Window window){
 	ResetCursor();
 }
 
+//Displays the content and choices of a panel
 void DisplayPanel(Panel *panel, Screen *screen, Item *firstItem, bool endpanel){
 
-	if(screen == NULL || panel == NULL)
+	//Check parameter validity
+	if(screen == NULL || panel == NULL || firstItem == NULL)
 		return;
 
+	//Clear windows
 	ClearWindow(screen->topWindow);
 	ClearWindow(screen->bottomWindow);
 
+	//Display content
 	DisplayText(panel->text, screen->topWindow);
 
+	//If it is the last panel, dont show choices
 	if(endpanel)
 		DisplayPressAnyKey(screen);
 	
+	//Otherwise, shot choices
 	else{
 		for(int i = 0; i < panel->choiceCount; i++){
 
@@ -179,19 +192,24 @@ void DisplayPanel(Panel *panel, Screen *screen, Item *firstItem, bool endpanel){
 	ResetCursor();
 }
 
+//Displays the GAME OVER title screen
 void DisplayEndgame(Screen *screen, Item *firstItem){
 
+	//Clear windows
 	ClearWindow(screen->topWindow);
 	ClearWindow(screen->bottomWindow);
 
+	//Display GAME OVEr
 	int titelPos = (screen->width -19) / 2;
 	econio_gotoxy(titelPos, 2);
 	puts("----GAME OVER----");
 
+	//Display item title
 	titelPos = (screen->width - 31) / 2;
 	econio_gotoxy(titelPos, 3);
 	puts("YOU HAVE COLLECTED THESE ITEMS:");
 
+	//Displays owned items
 	int offset = 0;
 	Item *current = firstItem;
 	while(current != NULL){
@@ -210,6 +228,7 @@ void DisplayEndgame(Screen *screen, Item *firstItem){
 	DisplayPressAnyKey(screen);
 }
 
+//Displays the Press Any Key! text in the bottom window
 void DisplayPressAnyKey(Screen *screen){
 
 	int promptPos = (screen->width - 16) / 2;
@@ -219,19 +238,24 @@ void DisplayPressAnyKey(Screen *screen){
 
 }
 
+//Shows the player what item they got
 void DisplayItem(Screen *screen, Item *item){
 
+	//Check for parameter validity
 	if(screen == NULL || item == NULL)
 		return;
 
+	//Clear windows
 	ClearWindow(screen->topWindow);
 	ClearWindow(screen->bottomWindow);
 
+	//Display title
 	int titlePos = (screen->width - 29) / 2;
 	int verticalCenter = (screen->topWindow.maxY - screen->topWindow.minY) / 2;
 	econio_gotoxy(titlePos, verticalCenter);
 	puts("YOU HAVE PICKED UP AND ITEM:");
 
+	//Display item name
 	int namePos = (screen->width - strlen(item->name) - 2) / 2;
 	econio_gotoxy(namePos, verticalCenter + 1);
 	puts(item->name);
@@ -241,11 +265,14 @@ void DisplayItem(Screen *screen, Item *item){
 	ResetCursor();
 }
 
+//Clears the whole screen and resets the cursor
 void ClearScreen(){
+
 	econio_clrscr();
 	econio_gotoxy(0, 0);
 }
 
+//Resets cursor position
 void ResetCursor(){
 
 	econio_gotoxy(0, 0);

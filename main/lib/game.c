@@ -18,6 +18,10 @@ void RunGame(Screen *screen, GameData *data){
   //If there was no save before, the starting panel will be the active panel
   if(activePanel == NULL){
     activePanel = GetStartPanel(data->firstPanel);
+
+    if(activePanel == NULL)
+      activePanel = data->firstPanel;
+
     activePanel->active = true;
   }
 
@@ -40,7 +44,7 @@ void RunGame(Screen *screen, GameData *data){
       return;
 
     //If the panel is an end panel, end the game
-    if(strcmp(activePanel->type, "end") == 0){
+    if(activePanel->type == end){
       EndGame(screen, data, activePanel);
       return;
     }

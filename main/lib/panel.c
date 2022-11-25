@@ -1,5 +1,6 @@
 #include "panel.h"
 
+//Returnes the last panel in the list
 Panel *GetLastPanel(Panel *first){
 
   if(first == NULL)
@@ -12,6 +13,7 @@ Panel *GetLastPanel(Panel *first){
   return result;
 }
 
+//Returnes the panel with a starting flag
 Panel *GetStartPanel(Panel *first){
 
   if(first == NULL)
@@ -19,7 +21,7 @@ Panel *GetStartPanel(Panel *first){
 
   Panel *result = first;
   while(result != NULL){
-    if(strcmp(result->type, "start") == 0)
+    if(result->type == start)
       return result;
 
     result = result->next;
@@ -28,6 +30,7 @@ Panel *GetStartPanel(Panel *first){
   return NULL;
 }
 
+//Retu
 Panel *GetActivePanel(Panel *first){
 
   if(first == NULL)
@@ -105,15 +108,22 @@ static Panel *CreatePanel(char *path){
   char **split = Split(file[0], ' ', &splitLength);
 
   if(splitLength <= 1){
+    FreeStringArray(file, fileLength);
     FreeStringArray(split, splitLength);
     return NULL;
   }
 
   result->id = CreateCopyString(split[0]);
-  result->type = CreateCopyString(split[1]);
   result->text = CreateCopyString(file[1]);
   result->active = false;
   result->next = NULL;
+
+  if(strcmp(split[1], "start") == 0)
+    result->type = start;
+  else if(strcmp(split[1], "end") == 0)
+    result->type = end;
+  else
+    result->type = normal;
 
   result->choiceCount = fileLength - 2;
   result->choices = malloc(sizeof(Choice*) * result->choiceCount);
@@ -188,11 +198,7 @@ static void FreePanel(Panel *panel){
   if(panel->id != NULL)
       free(panel->id);
 
-  //Free the type
-  if(panel->type != NULL)
-      free(panel->type);
-
-  //Free the text
+   //Free the text
   if(panel->text != NULL)
       free(panel->text);
 

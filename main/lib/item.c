@@ -1,5 +1,6 @@
 #include "item.h"
 
+//Returns the last item in the list
 Item *GetLastItem(Item *first){
 
   if(first == NULL)
@@ -12,6 +13,7 @@ Item *GetLastItem(Item *first){
   return result;
 }
 
+//Checks if an item is owned
 bool ItemOwned(Item *first, char *id){
   
   if(first == NULL || id == NULL)
@@ -29,6 +31,7 @@ bool ItemOwned(Item *first, char *id){
   return false;
 }
 
+//Returnes an item with the matching id
 Item *GetItem(Item *first, char *id){
 
   if(first == NULL || id == NULL)
@@ -45,6 +48,7 @@ Item *GetItem(Item *first, char *id){
   return NULL;
 }
 
+//Owns or disowns an item
 Item *SetItemOwnership(Item *first, char *id, bool owned){
 
   if(first == NULL || id == NULL)
@@ -60,6 +64,7 @@ Item *SetItemOwnership(Item *first, char *id, bool owned){
   return result;
 }
 
+//Creates an item from a text
 Item *CreateItem(char *text){
 
   if(text == NULL)
@@ -77,6 +82,7 @@ Item *CreateItem(char *text){
   return result;
 }
 
+//Adds a new item to the list
 Item *AddItemNode(Item *first, Item *node){
 
   Item *last = GetLastItem(first);
@@ -124,6 +130,7 @@ Item *CreateItemsFromFile(Item *first_, char *filePath){
   return first;
 }
 
+//Frees an item from memory
 static void FreeItem(Item *item){
 
   if(item == NULL)
@@ -137,15 +144,14 @@ static void FreeItem(Item *item){
   free(item);
 }
 
+//Frees the whole list of items
 void FreeItemList(Item *first){
 
   Item *tmp;
   Item *current = first;
-  while(current->next != NULL){
+  while(current != NULL){
     tmp = current->next;
     FreeItem(current);
     current = tmp;
   }
-
-  FreeItem(current);
 }
