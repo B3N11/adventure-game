@@ -30,7 +30,7 @@ Panel *GetStartPanel(Panel *first){
   return NULL;
 }
 
-//Retu
+//Returns the active panel
 Panel *GetActivePanel(Panel *first){
 
   if(first == NULL)
@@ -47,6 +47,7 @@ Panel *GetActivePanel(Panel *first){
   return NULL;
 }
 
+//Sets the panel with the matching id as active
 Panel *SetActivePanel(Panel *first, char *id){
 
   if(first == NULL || id == NULL)
@@ -62,6 +63,7 @@ Panel *SetActivePanel(Panel *first, char *id){
   return result;
 }
 
+//Returnes a panel based on id
 Panel *GetPanel(Panel *first, char *id){
 
   if(id == NULL || first == NULL)
@@ -79,6 +81,7 @@ Panel *GetPanel(Panel *first, char *id){
   return NULL;
 }
 
+//Creates a new panel and adds it to the list
 Panel *CreateAndAddPanel(Panel *first, char *path){
   Panel *new = CreatePanel(path);
   Panel *result = AddPanelNode(first, new);
@@ -86,15 +89,18 @@ Panel *CreateAndAddPanel(Panel *first, char *path){
   return result;
 }
 
-static Panel *CreatePanel(char *path){
+//Creates a panel from a file
+Panel *CreatePanel(char *path){
 
   //Checks for parameter validity
   if(path == NULL)
     return NULL;
 
+  //Read the file
   int fileLength;
   char **file = ReadAllLines(path, &fileLength);
 
+  //Check if the file is valid or not
   if(fileLength < 2 || file == NULL){
     FreeStringArray(file, fileLength);
     return NULL;
@@ -107,17 +113,20 @@ static Panel *CreatePanel(char *path){
   int splitLength;
   char **split = Split(file[0], ' ', &splitLength);
 
+  //Check if the first line is in correct format
   if(splitLength <= 1){
     FreeStringArray(file, fileLength);
     FreeStringArray(split, splitLength);
     return NULL;
   }
 
+  //Set basic data
   result->id = CreateCopyString(split[0]);
   result->text = CreateCopyString(file[1]);
   result->active = false;
   result->next = NULL;
 
+  //Set the type of the panel
   if(strcmp(split[1], "start") == 0)
     result->type = start;
   else if(strcmp(split[1], "end") == 0)
@@ -125,18 +134,25 @@ static Panel *CreatePanel(char *path){
   else
     result->type = normal;
 
+  //Create the choices
   result->choiceCount = fileLength - 2;
   result->choices = malloc(sizeof(Choice*) * result->choiceCount);
   for(int i = 0; i < result->choiceCount; i++)
     result->choices[i] = CreateChoice(file[i + 2]);
 
+  //Free resources
   FreeStringArray(file, fileLength);
   FreeStringArray(split, splitLength);
 
   return result;
 }
 
+//Adds a panel to the list
 Panel *AddPanelNode(Panel *first, Panel *node){
+
+  //If the new node 
+  if(node == NULL)
+    return first;
 
   Panel *last = GetLastPanel(first);
 
@@ -148,20 +164,24 @@ Panel *AddPanelNode(Panel *first, Panel *node){
   return first;
 }
 
-static Choice *CreateChoice(char *text){
+//Creates a choice from a text
+Choice *CreateChoice(char *text){
 
   if(text == NULL)
     return NULL;
 
+  //Split up the text
   Choice *result = (Choice*) malloc(sizeof(Choice));
   int length;
   char **split = Split(text, ' ', &length);
 
+  //Check text format
   if(length <= 2){
     FreeStringArray(split, length);
     return NULL;
   }
 
+  //Set values
   result->type = split[0][0];
   result->contentID = CreateCopyString(split[1]);
 
@@ -175,7 +195,8 @@ static Choice *CreateChoice(char *text){
   return result;
 }
 
-static void FreeChoice(Choice *choice){
+//Free a choice instance
+void FreeChoice(Choice *choice){
   
   if(choice == NULL)
     return;
@@ -188,7 +209,8 @@ static void FreeChoice(Choice *choice){
   free(choice);
 }
 
-static void FreePanel(Panel *panel){
+//Free a panel instance
+void FreePanel(Panel *panel){
 
   //Check parameter validity
   if(panel == NULL)
@@ -211,15 +233,14 @@ static void FreePanel(Panel *panel){
   free(panel);
 }
 
+//Free the whole panel list
 void FreePanelList(Panel *first){
 
   Panel *tmp;
   Panel *current = first;
-  while(current->next != NULL){
+  while(current != NULL){
     tmp = current->next;
     FreePanel(current);
     current = tmp;
   }
-
-  FreePanel(current);
 }

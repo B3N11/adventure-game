@@ -32,12 +32,12 @@ typedef struct Panel{
 
 Panel *GetLastPanel(Panel *first);
 Panel *CreateAndAddPanel(Panel *first, char *path);
-static Panel *CreatePanel(char *path);
+Panel *CreatePanel(char *path);
 Panel *AddPanelNode(Panel *first, Panel *node);
-static void FreePanel(Panel *item);
+void FreePanel(Panel *item);
 void FreePanelList(Panel *first);
-static Choice *CreateChoice(char *text);
-static void FreeChoice(Choice *choice);
+Choice *CreateChoice(char *text);
+void FreeChoice(Choice *choice);
 Panel *GetPanel(Panel *first, char *id);
 Panel *SetActivePanel(Panel *first, char *id);
 Panel *GetStartPanel(Panel *first);
