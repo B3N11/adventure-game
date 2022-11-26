@@ -16,8 +16,8 @@ typedef struct Item{
 Item *GetLastItem(Item *first);
 Item *CreateItem(char *text);
 Item *AddItemNode(Item *first, Item *node);
-Item *CreateItemsFromFile(Item *first_, char *filePath);
-static void FreeItem(Item *item);
+Item *CreateItemsFromFile(Item *first, char *filePath);
+void FreeItem(Item *item);
 void FreeItemList(Item *first);
 Item *SetItemOwnership(Item *first, char *id, bool owned);
 Item *GetItem(Item *first, char *id);

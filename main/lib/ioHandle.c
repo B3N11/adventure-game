@@ -195,6 +195,9 @@ void DisplayPanel(Panel *panel, Screen *screen, Item *firstItem, bool endpanel){
 //Displays the GAME OVER title screen
 void DisplayEndgame(Screen *screen, Item *firstItem){
 
+	if(screen == NULL || firstItem == NULL)
+		return;
+
 	//Clear windows
 	ClearWindow(screen->topWindow);
 	ClearWindow(screen->bottomWindow);
@@ -230,6 +233,9 @@ void DisplayEndgame(Screen *screen, Item *firstItem){
 
 //Displays the Press Any Key! text in the bottom window
 void DisplayPressAnyKey(Screen *screen){
+
+	if(screen == NULL)
+		return;
 
 	int promptPos = (screen->width - 16) / 2;
 	int verticalCenter = (((screen->bottomWindow.maxY - screen->bottomWindow.minY) + 1) / 2) + screen->split;

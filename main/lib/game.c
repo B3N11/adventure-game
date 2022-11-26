@@ -74,7 +74,7 @@ void EndGame(Screen *screen, GameData *data, Panel *activePanel){
 //Progress in the game based on the input of the player
 Panel *HandleInput(Screen *screen, GameData *data, Panel *activePanel, char input){
 
-  if(data == NULL || activePanel == NULL)
+  if(screen == NULL || data == NULL || activePanel == NULL)
     return activePanel;
 
   //Remove the ASCII "offset". If input was 1, the ascii code is 49

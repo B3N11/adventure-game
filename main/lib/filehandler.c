@@ -60,6 +60,9 @@ char **ReadAllLines(const char *path, int *length){
 //         returns NULL if the file can't be opened
 char *ReadAllLinesStr(const char *path){
 
+  if(path == NULL)
+    return NULL;
+
   //Open file in read mode
   FILE *fp = fopen(path, "r");
 

@@ -3,6 +3,7 @@
 //Exits the program with an error message
 void ExitError(const char* msg){
 
-  printf("%s\n", msg);
+  if(msg != NULL)
+   printf("%s\n", msg);
   exit(1);
 }

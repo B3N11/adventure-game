@@ -85,6 +85,9 @@ Item *CreateItem(char *text){
 //Adds a new item to the list
 Item *AddItemNode(Item *first, Item *node){
 
+  if(node == NULL)
+    return first;
+
   Item *last = GetLastItem(first);
 
   if(last == NULL)
@@ -96,9 +99,9 @@ Item *AddItemNode(Item *first, Item *node){
 }
 
 //Returns the pointer to the first node 
-Item *CreateItemsFromFile(Item *first_, char *filePath){
+Item *CreateItemsFromFile(Item *first, char *filePath){
 
-  Item *first = first_;
+  Item *result = first;
 
   //Read file
   int fileLength;
@@ -123,15 +126,15 @@ Item *CreateItemsFromFile(Item *first_, char *filePath){
     if(new ==  NULL)
       continue;
 
-    first = AddItemNode(first, new);
+    result = AddItemNode(result, new);
   }
 
   FreeStringArray(file, fileLength);
-  return first;
+  return result;
 }
 
 //Frees an item from memory
-static void FreeItem(Item *item){
+void FreeItem(Item *item){
 
   if(item == NULL)
     return;
@@ -147,6 +150,9 @@ static void FreeItem(Item *item){
 //Frees the whole list of items
 void FreeItemList(Item *first){
 
+  if(first == NULL)
+    return;
+  
   Item *tmp;
   Item *current = first;
   while(current != NULL){

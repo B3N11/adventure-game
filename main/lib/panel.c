@@ -83,6 +83,10 @@ Panel *GetPanel(Panel *first, char *id){
 
 //Creates a new panel and adds it to the list
 Panel *CreateAndAddPanel(Panel *first, char *path){
+
+  if(path == NULL)
+    return first;
+
   Panel *new = CreatePanel(path);
   Panel *result = AddPanelNode(first, new);
  
@@ -237,6 +241,9 @@ void FreePanel(Panel *panel){
 
 //Free the whole panel list
 void FreePanelList(Panel *first){
+
+  if(first == NULL)
+    return;
 
   Panel *tmp;
   Panel *current = first;
