@@ -1,38 +1,41 @@
-output: ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/game.o ./obj/gameData.o ./obj/item.o ./obj/logger.o ./obj/panel.o ./obj/econio.o ./obj/ioHandle.o 
-	gcc ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/game.o ./obj/gameData.o ./obj/item.o ./obj/logger.o ./obj/panel.o ./obj/econio.o ./obj/ioHandle.o -o kalandjatek
+output: main.o ext_string.o filehandler.o game.o gameData.o item.o logger.o panel.o econio.o ioHandle.o 
+	gcc main.o ext_string.o filehandler.o game.o gameData.o item.o logger.o panel.o econio.o ioHandle.o -o kalandjatek
 
-debug: ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/game.o ./obj/gameData.o ./obj/item.o ./obj/logger.o ./obj/panel.o ./obj/econio.o ./obj/ioHandle.o
-	gcc ./obj/main.o ./obj/ext_string.o ./obj/filehandler.o ./obj/game.o ./obj/gameData.o ./obj/item.o ./obj/logger.o ./obj/panel.o ./obj/econio.o ./obj/ioHandle.o -o kalandjatek -g
+debug: main.o ext_string.o filehandler.o game.o gameData.o item.o logger.o panel.o econio.o ioHandle.o
+	gcc main.o ext_string.o filehandler.o game.o gameData.o item.o logger.o panel.o econio.o ioHandle.o -o kalandjatek -g
 
-./obj/econio.o: ./lib/econio.c
-	gcc ./lib/econio.c -c -o ./obj/econio.o -g
+econio.o: ./lib/econio.c
+	gcc ./lib/econio.c -c -o econio.o -g
 
-./obj/ioHandle.o: ./lib/ioHandle.c
-	gcc ./lib/ioHandle.c -c -o ./obj/ioHandle.o -g
+ioHandle.o: ./lib/ioHandle.c
+	gcc ./lib/ioHandle.c -c -o ioHandle.o -g
 
-./obj/ext_string.o: ./lib/ext_string.c
-		gcc ./lib/ext_string.c -c -o ./obj/ext_string.o -g
+ext_string.o: ./lib/ext_string.c
+		gcc ./lib/ext_string.c -c -o ext_string.o -g
 
-./obj/filehandler.o: ./lib/filehandler.c
-	gcc ./lib/filehandler.c -c -o ./obj/filehandler.o -g
+filehandler.o: ./lib/filehandler.c
+	gcc ./lib/filehandler.c -c -o filehandler.o -g
 
-./obj/item.o: ./lib/item.c
-	gcc ./lib/item.c -c -o ./obj/item.o -g
+item.o: ./lib/item.c
+	gcc ./lib/item.c -c -o item.o -g
 
-./obj/logger.o: ./lib/logger.c
-	gcc ./lib/logger.c -c -o ./obj/logger.o -g
+logger.o: ./lib/logger.c
+	gcc ./lib/logger.c -c -o logger.o -g
 
-./obj/panel.o: ./lib/panel.c
-	gcc ./lib/panel.c -c -o ./obj/panel.o -g
+panel.o: ./lib/panel.c
+	gcc ./lib/panel.c -c -o panel.o -g
 
-./obj/game.o: ./lib/game.c
-	gcc ./lib/game.c -c -o ./obj/game.o -g
+game.o: ./lib/game.c
+	gcc ./lib/game.c -c -o game.o -g
 
-./obj/gameData.o: ./lib/gameData.c
-	gcc ./lib/gameData.c -c -o ./obj/gameData.o -g
+gameData.o: ./lib/gameData.c
+	gcc ./lib/gameData.c -c -o gameData.o -g
 
-./obj/main.o: main.c
-	gcc main.c -c -o ./obj/main.o -g
+main.o: main.c
+	gcc main.c -c -o main.o -g
 
 clean:
-	rm ./obj/*.o kalandjatek 
+	rm *.o kalandjatek
+
+cleanobj:
+	rm *.o
