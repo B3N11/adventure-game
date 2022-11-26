@@ -147,18 +147,20 @@ Panel *CreatePanel(char *path){
   return result;
 }
 
-//Adds a panel to the list
+//Adds a panel to the list, always returnes the first node in list
 Panel *AddPanelNode(Panel *first, Panel *node){
 
-  //If the new node 
+  //If the new node is NULL, return the first node
   if(node == NULL)
     return first;
 
   Panel *last = GetLastPanel(first);
 
+  //If the last is NULL, the list is empty, we return the new node as the first node
   if(last == NULL)
     return node;
 
+  //Add the new node to the last one
   last->next = node;
   
   return first;

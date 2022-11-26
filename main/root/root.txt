@@ -1,11 +1,11 @@
 Neon Night
 Beni
-P /home/brokkr/uni/sub/prog/nhf/advGame/main/root/panels/start.txt
-P /home/brokkr/uni/sub/prog/nhf/advGame/main/root/panels/smokeCigaretteBackAlley.txt
-P /home/brokkr/uni/sub/prog/nhf/advGame/main/root/panels/doNothingBackAlley.txt
-P /home/brokkr/uni/sub/prog/nhf/advGame/main/root/panels/approachVeteranOmnicBA.txt
-P /home/brokkr/uni/sub/prog/nhf/advGame/main/root/panels/walkFromVeteranOmnicBA.txt
-P /home/brokkr/uni/sub/prog/nhf/advGame/main/root/panels/greetOmnicBA.txt
-P /home/brokkr/uni/sub/prog/nhf/advGame/main/root/panels/greetOmnic2BA.txt
-P /home/brokkr/uni/sub/prog/nhf/advGame/main/root/panels/askOmnicBA.txt
-I /home/brokkr/uni/sub/prog/nhf/advGame/main/root/items/items.txt
+P ./root/panels/start.txt
+P ./root/panels/smokeCigaretteBackAlley.txt
+P ./root/panels/doNothingBackAlley.txt
+P ./root/panels/approachVeteranOmnicBA.txt
+P ./root/panels/walkFromVeteranOmnicBA.txt
+P ./root/panels/greetOmnicBA.txt
+P ./root/panels/greetOmnic2BA.txt
+P ./root/panels/askOmnicBA.txt
+I ./root/items/items.txt

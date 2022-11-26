@@ -15,15 +15,15 @@ int main(int argc, char **args){
 void Run(int argc, char **args){
 
   //Handle arguments and initiate program data
-  /*HandleStartingArgs(argc, args);*/
+  HandleStartingArgs(argc, args);
 
   //Read game data (panels and items)
-  /*GameData *data =  HandleRootfile(args[1]);*/
-  GameData *data = HandleRootfile("root/root.txt");
+  GameData *data =  HandleRootfile(args[1]);
+  /*GameData *data = HandleRootfile("root/root.txt");*/
 
   //Read save file
-  /*HandleSaveFile(args[2], data);*/
-  HandleSaveFile("root/save.txt", data);
+  HandleSaveFile(args[2], data);
+  /*HandleSaveFile("root/save.txt", data);*/
 
   //Create a new screen that determines the size
   Screen *screen = CreateScreen();
@@ -86,6 +86,8 @@ GameData *HandleRootfile(char *path){
     
     //If one of the files listed in rootfile doesnt exist, quit
     if(!FileExists(path)){
+      if(path != NULL)
+       free(path);
       FreeStringArray(rootfile, rootfileLength);
       FreeGameData(result);
       ExitError("One of the files in rootfile are invalid.");
