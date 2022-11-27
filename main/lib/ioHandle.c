@@ -1,7 +1,7 @@
 #include "ioHandle.h"
 
 //Displays the title screen for the game
-void DrawTitleScreen(Screen *screen, GameData *data, int background, int foreground){
+void DrawTitleScreen(Screen *screen, GameData *data, EconioColor background, EconioColor foreground){
 
 	//Check for parameter validity
 	if(screen == NULL || data == NULL)
@@ -38,7 +38,7 @@ char GetPressedKey(){
 }
 
 //Displays the screen
-void DrawScreen(Screen *screen, int background, int foreground){
+void DrawScreen(Screen *screen, EconioColor background, EconioColor foreground){
 
 	if(screen == NULL)
 		return;

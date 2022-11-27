@@ -166,7 +166,7 @@ Screen *CreateScreen(){
 
   //Set size
   result->width = 70;
-  result->height = 32;
+  result->height = 34;
 
   //Split is where the two windows are separated
   result->split = result->height - (result->height * 0.2);

@@ -27,9 +27,9 @@ typedef struct Screen{
 
 void DisplayText(const char *text, Window window);
 void ClearWindow(Window window);
-void DrawScreen(Screen *screen, int background, int foreground);
+void DrawScreen(Screen *screen, EconioColor background, EconioColor foreground);
 char GetPressedKey();
-void DrawTitleScreen(Screen *screen, GameData *data, int background, int foreground);
+void DrawTitleScreen(Screen *screen, GameData *data, EconioColor background, EconioColor foreground);
 void DisplayPanel(Panel *panel, Screen *screen, Item *firstItem, bool endpanel);
 void DisplayItem(Screen *screen, Item *item);
 void DisplayPressAnyKey(Screen *screen);
