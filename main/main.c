@@ -2,9 +2,6 @@
 
 int main(int argc, char **args){
 
-  //Turn off output buffer
-  /*setbuf(stdout, NULL);*/
-
   //Run the program
   Run(argc, args);
   
