@@ -206,14 +206,14 @@ void DisplayEndgame(Screen *screen, Item *firstItem){
 	ClearWindow(screen->bottomWindow);
 
 	//Display GAME OVEr
-	int titelPos = (screen->width -19) / 2;
+	int titelPos = (screen->width - 21) / 2;
 	econio_gotoxy(titelPos, 2);
-	puts("----GAME OVER----");
+	puts("------GAME OVER------");
 
 	//Display item title
-	titelPos = (screen->width - 31) / 2;
+	titelPos = (screen->width - 17) / 2;
 	econio_gotoxy(titelPos, 3);
-	puts("YOU HAVE COLLECTED THESE ITEMS:");
+	puts("YOUR INVENTORY:");
 
 	//Displays owned items
 	int offset = 0;
@@ -225,7 +225,7 @@ void DisplayEndgame(Screen *screen, Item *firstItem){
 		}
 
 		int currentPos = (screen->width - strlen(current->name) - 2) / 2;
-		econio_gotoxy(currentPos, 4 + offset);
+		econio_gotoxy(currentPos, 5 + offset);
 		puts(current->name);
 		offset++;
 		current = current->next;

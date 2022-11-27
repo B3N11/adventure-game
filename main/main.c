@@ -166,10 +166,10 @@ Screen *CreateScreen(){
 
   //Set size
   result->width = 70;
-  result->height = 34;
+  result->height = 35;
 
   //Split is where the two windows are separated
-  result->split = result->height - (result->height * 0.2);
+  result->split = result->height - (result->height * 0.2) - 1;
 
   //Set the parameters of the top and bottom windows
   result->topWindow = (Window){.minX=2, .minY=2, .maxX = result->width - 2, .maxY=result->split - 1};
