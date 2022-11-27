@@ -165,8 +165,8 @@ Screen *CreateScreen(){
   Screen *result = (Screen*) malloc(sizeof(Screen));
 
   //Set size
-  result->width = 70;
-  result->height = 35;
+  result->width = 90;
+  result->height = 39;
 
   //Set colors
   result->background = COL_DARKGRAY;
