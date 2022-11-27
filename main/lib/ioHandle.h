@@ -21,15 +21,17 @@ typedef struct Screen{
     int width;
     int height;
     int split;
+    EconioColor background;
+    EconioColor foreground;
     Window topWindow;
     Window bottomWindow;
 }Screen;
 
 void DisplayText(const char *text, Window window);
 void ClearWindow(Window window);
-void DrawScreen(Screen *screen, EconioColor background, EconioColor foreground);
+void DrawScreen(Screen *screen);
 char GetPressedKey();
-void DrawTitleScreen(Screen *screen, GameData *data, EconioColor background, EconioColor foreground);
+void DrawTitleScreen(Screen *screen, GameData *data);
 void DisplayPanel(Panel *panel, Screen *screen, Item *firstItem);
 void DisplayItem(Screen *screen, Item *item);
 void DisplayPressAnyKey(Screen *screen);

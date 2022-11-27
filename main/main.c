@@ -29,7 +29,7 @@ void Run(int argc, char **args){
   Screen *screen = CreateScreen();
 
   //Create title screen and wait for input to progress
-  DrawTitleScreen(screen, data, COL_DARKGRAY, COL_LIGHTYELLOW);
+  DrawTitleScreen(screen, data);
   GetPressedKey();
 
   //Run game loop
@@ -167,6 +167,10 @@ Screen *CreateScreen(){
   //Set size
   result->width = 70;
   result->height = 35;
+
+  //Set colors
+  result->background = COL_DARKGRAY;
+  result->foreground = COL_LIGHTYELLOW;
 
   //Split is where the two windows are separated
   result->split = result->height - (result->height * 0.2) - 1;

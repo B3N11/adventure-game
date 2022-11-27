@@ -1,13 +1,13 @@
 #include "ioHandle.h"
 
 //Displays the title screen for the game
-void DrawTitleScreen(Screen *screen, GameData *data, EconioColor background, EconioColor foreground){
+void DrawTitleScreen(Screen *screen, GameData *data){
 
 	//Check for parameter validity
 	if(screen == NULL || data == NULL)
 		return;
 
-	DrawScreen(screen, background, foreground);
+	DrawScreen(screen);
 
 	//Display title
 	int verticalCenter = (screen->topWindow.maxY - screen->topWindow.minY) / 2;
@@ -38,15 +38,15 @@ char GetPressedKey(){
 }
 
 //Displays the screen
-void DrawScreen(Screen *screen, EconioColor background, EconioColor foreground){
+void DrawScreen(Screen *screen){
 
 	if(screen == NULL)
 		return;
 
 	//Clear the screen and set the colors
 	econio_clrscr();
-	econio_textbackground(background);
-	econio_textcolor(foreground);
+	econio_textbackground(screen->background);
+	econio_textcolor(screen->foreground);
 	
 	//Go trought the edges of the screen
 	for(int i = 0; i < screen->height; i++){
@@ -55,9 +55,9 @@ void DrawScreen(Screen *screen, EconioColor background, EconioColor foreground){
 		for(int j = 0; j < screen->width; j++){
 
 			if(i == 0 || i == screen->height - 1 || i == screen->split || j == 0 || j == screen->width - 1)
-				econio_textbackground(foreground);
+				econio_textbackground(screen->foreground);
 			else
-				econio_textbackground(background);
+				econio_textbackground(screen->background);
 
 			printf(" ");
 		}
@@ -65,13 +65,13 @@ void DrawScreen(Screen *screen, EconioColor background, EconioColor foreground){
 
 	//Display the default controls
 	econio_gotoxy(2, screen->split);
-	econio_textbackground(foreground);
-	econio_textcolor(background);
+	econio_textbackground(screen->foreground);
+	econio_textcolor(screen->background);
 	puts("[q] Quit [s] Save");
 
 	//Reset values
-	econio_textbackground(background);
-	econio_textcolor(foreground);
+	econio_textbackground(screen->background);
+	econio_textcolor(screen->foreground);
 	ResetCursor();
 }
 
