@@ -30,7 +30,7 @@ void RunGame(Screen *screen, GameData *data){
     return;
 
   //Display the first panel and wait for input
-  DisplayPanel(activePanel, screen, data->firstItem, false); 
+  DisplayPanel(activePanel, screen, data->firstItem);
   char input = GetPressedKey();
 
   //Run the game while player doesn't quit
@@ -50,7 +50,7 @@ void RunGame(Screen *screen, GameData *data){
     }
 
     //If the current panel is normal or starting panel, progress with the game
-    DisplayPanel(activePanel, screen, data->firstItem, false);
+    DisplayPanel(activePanel, screen, data->firstItem);
     input = GetPressedKey();
   }
 }
@@ -63,7 +63,7 @@ void EndGame(Screen *screen, GameData *data, Panel *activePanel){
     return;
 
   //First, display the panel
-  DisplayPanel(activePanel, screen, data->firstItem, true);
+  DisplayPanel(activePanel, screen, data->firstItem);
   GetPressedKey();
 
   //Then, display the end screen

@@ -159,7 +159,7 @@ void DisplayText(const char *text, Window window){
 }
 
 //Displays the content and choices of a panel
-void DisplayPanel(Panel *panel, Screen *screen, Item *firstItem, bool endpanel){
+void DisplayPanel(Panel *panel, Screen *screen, Item *firstItem){
 
 	//Check parameter validity
 	if(screen == NULL || panel == NULL || firstItem == NULL)
@@ -173,7 +173,7 @@ void DisplayPanel(Panel *panel, Screen *screen, Item *firstItem, bool endpanel){
 	DisplayText(panel->text, screen->topWindow);
 
 	//If it is the last panel, dont show choices
-	if(endpanel)
+	if(panel->type == end)
 		DisplayPressAnyKey(screen);
 	
 	//Otherwise, shot choices

@@ -30,7 +30,7 @@ void ClearWindow(Window window);
 void DrawScreen(Screen *screen, EconioColor background, EconioColor foreground);
 char GetPressedKey();
 void DrawTitleScreen(Screen *screen, GameData *data, EconioColor background, EconioColor foreground);
-void DisplayPanel(Panel *panel, Screen *screen, Item *firstItem, bool endpanel);
+void DisplayPanel(Panel *panel, Screen *screen, Item *firstItem);
 void DisplayItem(Screen *screen, Item *item);
 void DisplayPressAnyKey(Screen *screen);
 void DisplayEndgame(Screen *screen, Item *firstItem);
