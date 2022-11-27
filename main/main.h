@@ -6,7 +6,7 @@
 #include "lib/filehandler.h"
 #include "lib/ext_string.h"
 #include "lib/debugmalloc.h"
-#include "lib/logger.h"
+//#include "lib/logger.h"
 #include "lib/ioHandle.h"
 #include <unistd.h>
 
@@ -16,5 +16,6 @@ void HandleStartingArgs(int argc, char **args);
 GameData *HandleRootfile(char *path);
 Screen *CreateScreen();
 void HandleSaveFile(char *path, GameData *data);
+void ExitError(const char* msg);
 
 #endif

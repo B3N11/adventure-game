@@ -1,8 +1,8 @@
-output: main.o ext_string.o filehandler.o game.o gameData.o item.o logger.o panel.o econio.o ioHandle.o 
-	gcc main.o ext_string.o filehandler.o game.o gameData.o item.o logger.o panel.o econio.o ioHandle.o -o kalandjatek
+output: main.o ext_string.o filehandler.o game.o gameData.o item.o panel.o econio.o ioHandle.o 
+	gcc main.o ext_string.o filehandler.o game.o gameData.o item.o panel.o econio.o ioHandle.o -o kalandjatek
 
-debug: main.o ext_string.o filehandler.o game.o gameData.o item.o logger.o panel.o econio.o ioHandle.o
-	gcc main.o ext_string.o filehandler.o game.o gameData.o item.o logger.o panel.o econio.o ioHandle.o -o kalandjatek -g
+debug: main.o ext_string.o filehandler.o game.o gameData.o item.o panel.o econio.o ioHandle.o
+	gcc main.o ext_string.o filehandler.o game.o gameData.o item.o panel.o econio.o ioHandle.o -o kalandjatek -g
 
 econio.o: ./lib/econio.c
 	gcc ./lib/econio.c -c -o econio.o -g
@@ -18,9 +18,6 @@ filehandler.o: ./lib/filehandler.c
 
 item.o: ./lib/item.c
 	gcc ./lib/item.c -c -o item.o -g
-
-logger.o: ./lib/logger.c
-	gcc ./lib/logger.c -c -o logger.o -g
 
 panel.o: ./lib/panel.c
 	gcc ./lib/panel.c -c -o panel.o -g
