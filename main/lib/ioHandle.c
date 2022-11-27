@@ -102,6 +102,7 @@ void DisplayText(const char *text, Window window){
 	//Calculate how many steps it takes to walk trought the whole window
 	int index = 0;
 	int offset = 0;
+	int textLength = strlen(text);
 	int verticalMove = window.maxY - window.minY;
 	int horizontalMove = window.maxX - window.minX;
 	
@@ -137,19 +138,23 @@ void DisplayText(const char *text, Window window){
 			}
 
 			//Break line when operator reached
-			if((index == 0 && text[index] == '\\' && text[index + 1] == 'n') || (index > 0 && text[index - 1] != '\\' && text[index] == '\\' && text[index + 1] == 'n')){
+			if((index == 0 && text[index] == '\\' && text[index + 1] == 'n') || (index > 0 && index < textLength && text[index - 1] != '\\' && text[index] == '\\' && text[index + 1] == 'n') || (index == textLength - 1 && text[index - 1] != '\\' && text[index] == '\\' && text[index] == 't')){
 				index += 2;
 				break;
 			}
 
 			//Insert tab when operator reached
-			if((index == 0 && text[index] == '\\' && text[index + 1] == 't') || (index > 0 && text[index - 1] != '\\' && text[index] == '\\' && text[index + 1] == 't')){
-				printf("    ");
+			if((index == 0 && text[index] == '\\' && text[index + 1] == 't') || (index > 0 && index < textLength  && text[index - 1] != '\\' && text[index] == '\\' && text[index + 1] == 't') || (index == textLength - 1 && text[index - 1] != '\\' && text[index] == '\\' && text[index] == 't')){
+				printf("    "); 
 				offset += 4;
 				index += 2;
+				continue;
 			}
 
 			//If everything is normal, we display the character
+			if(index < 0 || index > textLength)
+				continue;
+
 			printf("%c", text[index]);
 			index++;
 		}
@@ -162,7 +167,7 @@ void DisplayText(const char *text, Window window){
 void DisplayPanel(Panel *panel, Screen *screen, Item *firstItem){
 
 	//Check parameter validity
-	if(screen == NULL || panel == NULL || firstItem == NULL)
+	if(screen == NULL || panel == NULL)
 		return;
 
 	//Clear windows

@@ -12,15 +12,15 @@ int main(int argc, char **args){
 void Run(int argc, char **args){
 
   //Handle arguments and initiate program data
-  HandleStartingArgs(argc, args);
+  /*HandleStartingArgs(argc, args);*/
 
   //Read game data (panels and items)
-  GameData *data =  HandleRootfile(args[1]);
-  /*GameData *data = HandleRootfile("root/root.txt");*/
+  /*GameData *data =  HandleRootfile(args[1]);*/
+  GameData *data = HandleRootfile("sroot/root.txt");
 
   //Read save file
-  HandleSaveFile(args[2], data);
-  /*HandleSaveFile("root/save.txt", data);*/
+  /*HandleSaveFile(args[2], data);*/
+  HandleSaveFile("sroot/save.txt", data);
 
   //Create a new screen that determines the size
   Screen *screen = CreateScreen();

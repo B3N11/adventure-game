@@ -1,0 +1,3 @@
+tutorialStart start
+\tIn this game, you will play as a guide for 4 unfortunate souls, who has been trapped in mysterious circumstances.\n\n\tTo achieve this, you will need to make choices. Some of which may save them...some of which may not. In the unlikely case in which one member of the group ends up dead, you will have an option:\n\n\tDIED: Name\n\nIn this case, you must choose that to confirm the death of the person and continue only after that. At the end of the game, you will see who died.\n\n\n\n\tGood luck!
+P tutorialContinue "Continue"
