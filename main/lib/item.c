@@ -73,6 +73,9 @@ Item *CreateItem(char *text){
   int idLenght = CharsUntilNextSpace(text, 0);
   int nameLength = strlen(text) - idLenght - 1;
 
+  if(nameLength <= 0)
+    return NULL;
+
   Item *result = (Item*) malloc(sizeof(Item));
   result->id = Crop(text, 0, nameLength + 1);
   result->name = Crop(text, idLenght + 2, 1);

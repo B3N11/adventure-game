@@ -178,12 +178,15 @@ void DisplayPanel(Panel *panel, Screen *screen, Item *firstItem, bool endpanel){
 	
 	//Otherwise, shot choices
 	else{
+		int offset = 0;
 		for(int i = 0; i < panel->choiceCount; i++){
 
-			if(panel->choices[i]->type == 'I' && ItemOwned(firstItem, panel->choices[i]->contentID))
+			if(panel->choices[i]->type == 'I' && ItemOwned(firstItem, panel->choices[i]->contentID)){
+				offset++;
 				continue;
+			}
 
-			econio_gotoxy(2, screen->split + 1 + i);
+			econio_gotoxy(2, screen->split + 1 + i - offset);
 			printf("[%d] ", i);
 			puts(panel->choices[i]->text);
 		}

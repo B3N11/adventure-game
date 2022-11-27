@@ -13,7 +13,7 @@ bool FileExists(char *file){
 }
 
 //Writes all elements of a string array into a file (each element into a new line)
-void WriteAllLines(char *path, char **array, int length){
+void WriteAllLines(const char *path, char **array, int length){
 
   //Check for parameter validity
   if(path == NULL || array == NULL || length == 0)
