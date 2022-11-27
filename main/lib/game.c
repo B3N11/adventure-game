@@ -86,16 +86,16 @@ Panel *HandleInput(Screen *screen, GameData *data, Panel *activePanel, char inpu
 
   //If the input is S, save the current state
   else if(input == 's')
-    Save(screen, data, activePanel);
+    Save(data, activePanel);
 
   return activePanel;
 }
 
 //Saves the current state of the game
-void Save(Screen *screen, GameData *data, Panel *activePanel){
+void Save(GameData *data, Panel *activePanel){
   
   //Check for parameter validity
-  if(screen == NULL || data == NULL || activePanel == NULL)
+  if(data == NULL || activePanel == NULL)
     return;
 
   //Allocate memory for the string array that will contain the data

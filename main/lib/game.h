@@ -13,7 +13,7 @@ Panel *HandleInput(Screen *screen, GameData *data, Panel *activePanel, char inpu
 Panel *EvaluateChoice(Screen *screen, GameData *data, Panel *activePanel, int choiceIndex);
 Panel *ActivateNewPanel(Panel *activePanel, Panel *first, char *id);
 void PickupItem(Screen *screen, Item *first, char *id);
-void Save(Screen *screen, GameData *data, Panel *activePanel);
+void Save(GameData *data, Panel *activePanel);
 void EndGame(Screen *screen, GameData *data, Panel *activePanel);
 
 #endif
