@@ -44,10 +44,8 @@ void RunGame(Screen *screen, GameData *data){
       return;
 
     //If the panel is an end panel, end the game
-    if(activePanel->type == end){
-      EndGame(screen, data, activePanel);
-      return;
-    }
+    if(activePanel->type == end)
+      return EndGame(screen, data, activePanel);
 
     //If the current panel is normal or starting panel, progress with the game
     DisplayPanel(activePanel, screen, data->firstItem);
