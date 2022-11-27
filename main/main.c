@@ -3,7 +3,7 @@
 int main(int argc, char **args){
 
   //Turn off output buffer
-  setbuf(stdout, NULL);
+  /*setbuf(stdout, NULL);*/
 
   //Run the program
   Run(argc, args);
@@ -165,8 +165,8 @@ Screen *CreateScreen(){
   Screen *result = (Screen*) malloc(sizeof(Screen));
 
   //Set size
-  result->width = 90;
-  result->height = 39;
+  result->width = SCRWIDTH;
+  result->height = SCRHEIGHT;
 
   //Set colors
   result->background = COL_DARKGRAY;

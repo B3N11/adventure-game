@@ -211,9 +211,9 @@ void DisplayEndgame(Screen *screen, Item *firstItem){
 	puts("------GAME OVER------");
 
 	//Display item title
-	titelPos = (screen->width - 17) / 2;
+	titelPos = (screen->width - 18) / 2;
 	econio_gotoxy(titelPos, 3);
-	puts("YOUR INVENTORY:");
+	puts("[YOUR INVENTORY]");
 
 	//Displays owned items
 	int offset = 0;
