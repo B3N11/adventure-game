@@ -1,0 +1,3 @@
+startPanel start
+KARÁCSONY VAN!!\n\nEbben a történetben legalábbis...A Mikulás készülődik, hogy minél előbb eljuttassa az ajándékokat idén is a gyerekeknek. Igen ám, de van egy igazán különleges gyermek, aki mindennél értékesebb ajándékot kért.\n\n\t\tPatrik\n\nEz a kisfiú idén nem Lego-t kért karácsonyra, nem telefont vagy laptopot, mint a többi gyerek. Patrik leghőbb vágya, hogy átmenjen idén analízisből.\nA Mikulás bizony tudta, hogy Patrik kívánsága minden gyermekénél őszintébb és becsesebb, így az ő ajándékát mindenképp el szerette volna juttatni a fa alá időben.\n\nSegíts hát a Mikulásnak, hogy eljusson Patrikhoz és útközben meglepjen más gyerekeket is!
+P continue "Tovább"

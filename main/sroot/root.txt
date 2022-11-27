@@ -1,3 +1,18 @@
-Unfortunate Circumstances
-The Curator
-P ./sroot/panels/tutorialStart.txt
+A Special Christmas
+Benedek
+P ./sroot/panels/startPanel.txt
+P ./sroot/panels/continue.txt
+P ./sroot/panels/beniAjandek.txt
+P ./sroot/panels/beni.txt
+P ./sroot/panels/csabaAjandek.txt
+P ./sroot/panels/csaba.txt
+P ./sroot/panels/endPanel.txt
+P ./sroot/panels/gellertAjandek.txt
+P ./sroot/panels/gellert.txt
+P ./sroot/panels/patrikAjandek.txt
+P ./sroot/panels/patrik.txt
+P ./sroot/panels/petiAjandek.txt
+P ./sroot/panels/peti.txt
+P ./sroot/panels/tomiAjandek.txt
+P ./sroot/panels/tomi.txt
+I ./sroot/items.txt

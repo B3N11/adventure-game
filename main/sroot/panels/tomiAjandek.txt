@@ -1,0 +1,4 @@
+tomiAjandek normal
+A Mikulás leereszkedik a kéményen, Tomi nem hallja meg. Lelopódzik a nappaliba, ahol áll a gyönyőrű karácsonfa. Alá is teszi az ajándékot, ami nem más, mint\n\n\tEgy új RGB-s billentyűzet, mert a mostani fénye még nem ér át a szomszéd kerületbe.\n\nAz asztalon talál kikészítve sütiket.
+I sutiTomi "Süti elvétele"
+P tomi "Vissza"

@@ -1,0 +1,6 @@
+tomi normal
+Tomi házáék mellé leszáll a Mikulás. Szép nagy házuk van Tomiéknak, még ezen a sötét estén is látszik. Tomi ablakából csak úgy süt a zöld fény, RGB-s billentyűzetének fénye beragyogja a teljes utcát. Nem is baj, a Mikulás tudja mire vágyik.
+P tomiAjandek "Ajándék átadása"
+P peti "Tovább Peti háza felé"
+P gellert "Tovább Gellért háza felé"
+P csaba "Tovább Csaba háza felé"

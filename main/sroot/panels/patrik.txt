@@ -1,0 +1,5 @@
+patrik normal
+Végre itt is volna. Patrik háza. A fiú bizonyára már alig várja, hogy kibonthassa ajándékát. Ám valami kihalladszik Patrik szobájából. Agresszív üvöltés...Patrik bizonyára most is LoL-ozik.
+P patrikAjandek "[VÉGE] Ajádék átadása"
+P gellert "Tovább Gellért háza felé"
+P beni "Tovább Beni háza felé"

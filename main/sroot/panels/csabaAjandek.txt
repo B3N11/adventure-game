@@ -1,0 +1,4 @@
+csabaAjandek normal
+Csabi legnagyobb vágya egy barátnő, de sajnos az élet nem adta meg neki ezt a lehetőséget. A Mikulás fájó szívvel rakja a fa alá Csabi ajándékát, ami nem más, mint\n\n\t\t egy oszcilloszkóp.\n\nCsabi szülei meglátják a Mikulást és egy pohár vörösborral kínálják.
+I sutiCsaba "Bor elfogadása"
+P csaba "Vissza"

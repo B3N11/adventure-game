@@ -1,0 +1,4 @@
+patrikAjandek normal
+A Mikulás halkan belopódzik a fához és lehelyezi féltve őrizgetett csomagját. Könnyek szöknek a szemébe, ahogy a holnapi napra gondol, mikor is minden gyereknek boldog mosoly ül az arcára az ajándékokat látva.\n\nA Mikulás letörölve könnyeit, meglát egy szelet zserbót az étkező asztalon.
+I sutiPatrik "Zserbó elvétele"
+P endPanel "Tovább"

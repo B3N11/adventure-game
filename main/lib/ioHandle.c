@@ -229,7 +229,7 @@ void DisplayEndgame(Screen *screen, Item *firstItem){
 			continue;
 		}
 
-		int currentPos = (screen->width - strlen(current->name) - 2) / 2;
+		int currentPos = (screen->width - strlen(current->name)) / 2 + 2;
 		econio_gotoxy(currentPos, 5 + offset);
 		puts(current->name);
 		offset++;
@@ -270,7 +270,7 @@ void DisplayItem(Screen *screen, Item *item){
 	puts("YOU HAVE PICKED UP AND ITEM:");
 
 	//Display item name
-	int namePos = (screen->width - strlen(item->name) - 2) / 2;
+	int namePos = (screen->width - strlen(item->name)) / 2 + 2;
 	econio_gotoxy(namePos, verticalCenter + 1);
 	puts(item->name);
 

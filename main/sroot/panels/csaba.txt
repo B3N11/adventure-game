@@ -1,0 +1,5 @@
+csaba normal
+Máris elérkezett Csabi házához. Szép kertesház, benne kellemes zene szól. Valami viszont nincs rendben. A Mikulás pontosan tudja mit szeretne Csabi karácsonyra, de nem tudja teljesíteni a kívánságát.
+P csabaAjandek "Ajándék átadása"
+P tomi "Tovább Tomi háza felé"
+P peti "Tovább Peti háza felé"

@@ -9,7 +9,7 @@
 #include "lib/ioHandle.h"
 #include <unistd.h>
 
-#define SCRWIDTH 90
+#define SCRWIDTH 70
 #define SCRHEIGHT 39
 
 void Run(int argc, char **args);

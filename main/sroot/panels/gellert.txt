@@ -1,0 +1,5 @@
+gellert normal
+Gellérték házához érve a Mikulás elcsodálkozik. Nincs senki otthon? Szenteste? Ekkor jut eszébe a Mikulásnak, hogy Gellért ismét tankörsörön van, nem rég volt ugyanis BSZ vizsgájuk, és az olyasmire inni kell.
+P gellertAjandek "Ajándék átadása"
+P tomi "Tovább Tomi háza felé"
+P patrik "Tovább Patrik háza felé"

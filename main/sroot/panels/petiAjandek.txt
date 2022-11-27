@@ -1,0 +1,4 @@
+petiAjandek normal
+A Mikulás besurran a házba, közben megcsodálja mégegyszer a BMW-t. A fa alá rejti Peti ajándékát, ami nem más, mint\n\n\t\tegy egy éves mateking előfizetés.\n\n Kifele menet megpillant az asztalon egy adag neki kikészített szaloncukrot.
+I sutiPeti "Szaloncukor elvétele"
+P peti "Vissza"

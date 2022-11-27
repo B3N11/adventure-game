@@ -1,0 +1,6 @@
+sutiTomi "Süti Tomi házából"
+sutiPeti "Szaloncukor Peti házából"
+sutiCsaba "Egy pohár vörösbor Csabi házából"
+sutiBeni "Rétes Beni házából"
+sutiGellert "Egy szelet beigli Gellért házából"
+sutiPatrik "Egy kis zserbó Patrik házából"
