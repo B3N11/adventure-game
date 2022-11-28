@@ -1,3 +1,0 @@
-John 21 male
-Jane 20 female
-Jaros 16 other

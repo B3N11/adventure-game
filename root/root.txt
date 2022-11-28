@@ -1,4 +1,4 @@
-A Special Christmas
+Patrik karácsonya
 Benedek
 P ./sroot/panels/startPanel.txt
 P ./sroot/panels/continue.txt

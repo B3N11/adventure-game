@@ -1,4 +1,0 @@
-approachVeteranOmnicBA normal
-The robot searches for something with his eye on you as you are walking towards him. He struggles to stand up, but he manages to do so and shakes your hand. He may be an omnic, but he knows ethics well.\n\t"Good evening sir!" - his audio panel must be damaged, his words are messy and a little static noise can be heard when he is not speaking.
-P greetOmnicBA "Say: "Is it? Can't tell if it's night or morning...""
-P greetOmnic2BA "Say: "Back at ya. What's the matter?""
