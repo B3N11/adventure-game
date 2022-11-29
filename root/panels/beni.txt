@@ -1,5 +1,5 @@
 beni normal
-Beniék háza egy gyönyörű kerttel rendelkező családi ház, van is hely leparkolni a szánt...a veteményesben. Beniék kutyája a leghangosabb a környéken, már többször fel is jelentették őket, de ez a kutyát nem akadályozza meg, hogy úgy megugassa a Mikulást, mintha nem lenne holnap.
+Beniék háza egy gyönyörű kerttel rendelkező családi ház, van is hely leparkolni a szánt...a veteményesben. Beniék kutyája a leghangosabb a környéken, már többször fel is jelentették őket, de ez a kutyát nem akadályozza meg abban, hogy úgy megugassa a Mikulást, mintha nem lenne holnap.
 P beniAjandek "Ajándék átadása"
 P peti "Tovább Peti háza felé"
 P patrik "Tovább Patrik háza felé"

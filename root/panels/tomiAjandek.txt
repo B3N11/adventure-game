@@ -1,4 +1,4 @@
 tomiAjandek normal
-A Mikulás beoson a lakásba, Tomi nem hallja meg, éppen hangosan röhög a Kréta forráskódján. Belopakodott a nappaliba, ahol áll a gyönyőrű karácsonfa. Alá is teszi az ajándékot, ami nem más, mint\n\n\tegy vadiúj, érvényes forgalmi a Corsa-nak.\n\nAz asztalon talál kikészítve sütiket.
+A Mikulás beoson a lakásba, Tomi nem hallja meg, éppen hangosan röhög a Kréta forráskódján. Belopakodott a nappaliba, ahol áll a gyönyőrű karácsonyfa. Alá is teszi az ajándékot, ami nem más, mint\n\n\tegy vadonatúj, érvényes forgalmi a Corsa-nak.\n\nAz asztalon talál kikészítve sütiket.
 I sutiTomi "Összes süti elfogadása"
 P tomi "Vissza"
