@@ -39,6 +39,12 @@ A ***root.txt*** további fájl elérési utakat tartalmaz, ezek Linux-on lettek
 
 Ha kijátszottad a játékot vagy újrakezdenéd, csak töröld ki a mentési fájlt (mainFix.c esetén ez a **./root/save.txt**) és már játszhatod is újra.
 
+> Játék indítása, ha nem mainFix.c-vel lett buildelve:
+>
+> `./kalandjatek root/root.txt root/save.txt`
+> 
+> Természetesen más executable név esetén ne `kalandjatek`-ot írj.
+
 ##### Irányítás/Játékmenet 
 A kijelző két részre van bontva vízszintesen. A felső mindig az aktuális történéseket írja ki, az alsó pedig a választási lehetőségeidet listázza.
 Ha a *Press any key!* kijelzést látod, semmilyen gomb nem látja el eredeti funkcióját, csak tovább lép a játékban.
