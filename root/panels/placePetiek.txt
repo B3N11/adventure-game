@@ -1,0 +1,3 @@
+placePetiek normal
+A Mikulás hátramerészkedik és a lépcső alatti hátsó asztalnál ott találja Petit és a tankörtársait. Gyorsan visszahúzódik, nehogy meglássák, de az utolsó pillantásával még észreveszi az asztal alatt alvó Ádámot...\n\n\t"A GYPK-sok már csak ilyenek..." - gondolja a Mikulás, majd csendben visszahúzódik a bárba.
+P place "Vissza"

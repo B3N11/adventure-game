@@ -1,0 +1,6 @@
+place normal
+Nincs ünnep Place nélkül. Ezzel a Mikulás is így van és habár kedd nincs, valami csak jár a Mikulásnak...Leparkolja a szánját az utcára és belép a bár mindig levegőtlen és meleg előterébe. Nincsenek sokat, viszont hátulról nevetések hallatszódnak.
+P placePetiek "Hátulró jövő nevetés megvizsgálása"
+I placeShot "Egy placeshot kikérése"
+P placeDeath "150 placeshot kikérése"
+P csaba "Tovább Csabi házához"

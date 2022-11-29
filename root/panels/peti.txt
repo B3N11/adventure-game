@@ -1,5 +1,5 @@
 peti normal
-A Mikulás megérkezik Petiék házához. Egy gyönyőrű sötétzöld BMW áll a ház előtt, bizonyára Petié. Peti már rég alszik, a Mikulásnak könnyű dolga lesz belopózni.
+A Mikulás megérkezik Petiék házához. Egy gyönyőrű sötétzöld BMW áll a ház előtt, bizonyára Petié, hiszen index nincs is rajta. Peti szobájában nem ég a villany. Bizonyára vagy alszik, vagy a Place-ben van. A Mikulásnak könnyű dolga lesz belopózni.
 P petiAjandek "Ajándék átadása"
 P tomi "Tovább Tomi háza felé"
 P csaba "Tovább Csabi háza felé"

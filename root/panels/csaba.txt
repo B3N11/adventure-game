@@ -3,3 +3,4 @@ Máris elérkezett Csabi házához. Szép kertesház, benne kellemes zene szól.
 P csabaAjandek "Ajándék átadása"
 P tomi "Tovább Tomi háza felé"
 P peti "Tovább Peti háza felé"
+P place "Tovább a Place felé"
